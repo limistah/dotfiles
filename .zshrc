@@ -8,13 +8,13 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="random"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -64,33 +64,24 @@ ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" )
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  github
   gitignore
-  gem
   emoji
   docker
-  django
   aws
   colored-man-pages
   laravel5
   node
   nvm
   npm
-  perl
   redis-cli
   sudo
   ubuntu
   vscode
   yarn
-  react-native
   python
   pylint
   history
-  heroku
-  kubectl
-  kube-ps1
   go
-  golang
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -144,6 +135,10 @@ alias dkapii='dkapi && npmi'
 alias dkapid='dkapi && npmd'
 # Seed dk  api project dummy data
 alias dkapiseed='dkapi && node seed.js'
+# Run test
+alias dkapit='dkapi && npm run test'
+# Run test in watch
+alias dkapitw='dkapi && npm run test:watch'
 # Start DK Web Project
 alias dkwebs='dkweb && npms'
 # Run DK web project in development mode
@@ -160,6 +155,10 @@ alias dkadmini='dkadmin && npmi'
 alias dkdocsb='dkdocs && npmb'
 # Build and push DK docs
 alias dkdocsp='dkdocsb && npmp'
+# SSH into datingkinky Live Server
+alias dklive='ssh ubuntu@18.204.62.243'
+alias dkstaging='ssh ubuntu@18.215.107.52'
+alias dkdump="mongodump --host Cluster0-shard-0/cluster0-shard-00-00-vwlw3.mongodb.net:27017,cluster0-shard-00-01-vwlw3.mongodb.net:27017,cluster0-shard-00-02-vwlw3.mongodb.net:27017 --ssl --username dk --password  R3OWmG8usiuhwS3"
 
 ## Personal
 alias personal='cd ~/Personal'
@@ -179,13 +178,14 @@ alias gr='git reset --hard'
 
 
 ## NPM stuffs
-alias npmi='npm install'
-alias npmu='npm update'
-alias npms='npm start'
-alias npmb='npm run build'
-alias npmd='npm run dev'
-alias npmc='npm cache clean --force'
-alias npmu='npm update npm'
+alias npmi='pnpm install'
+alias npmu='pnpm update'
+alias npms='pnpm start'
+alias npmb='pnpm run build'
+alias npmd='pnpm run dev'
+alias npmc='pnpm cache clean --force'
+alias npmu='pnpm update npm'
+alias npmtw='pnpm run test:watch'
 
 
 ## MACHINE
@@ -204,3 +204,4 @@ alias editzsh='subl ~/.zshrc'
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 alias netmon='sudo nethogs'
+alias cal="zenity --calendar"
