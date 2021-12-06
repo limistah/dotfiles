@@ -126,7 +126,9 @@ alias dwl="cd ~/Downloads"
 alias start-mongo="brew services start mongodb-community@4.4"
 alias stop-mongo="brew services stop mongodb-community@4.4"
 # alias ecpserver="ssh ubuntu@ec2-3-17-6-220.us-east-2.compute.amazonaws.com"
+alias ecpstaging="ssh ubuntu@ec2-3-130-141-230.us-east-2.compute.amazonaws.com"
 alias ecpserver="ssh ubuntu@ec2-3-140-36-43.us-east-2.compute.amazonaws.com"
+alias ecpstaging="ssh ubuntu@ec2-3-130-141-230.us-east-2.compute.amazonaws.com"
 alias ecplinode="ssh root@172.104.146.78"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -160,3 +162,24 @@ if [ -f '/private/etc/google-cloud-sdk/completion.zsh.inc' ]; then . '/private/e
 
 alias cclean="sudo rm -rf ~/Library/Caches"
 
+
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc%  
