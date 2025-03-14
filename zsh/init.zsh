@@ -105,3 +105,4 @@ source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.config/zsh/dependencies.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
+eval "$(atuin init zsh)"
