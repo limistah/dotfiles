@@ -6,9 +6,9 @@ return {
 	version = false,
 	event = "VeryLazy",
 	config = function()
-		require("mini.ai").setup()
 		require("mini.align").setup()
 		require("mini.bracketed").setup()
+		require("mini.ai").setup()
 		require("mini.comment").setup()
 		require("mini.jump2d").setup()
 		require("mini.operators").setup()

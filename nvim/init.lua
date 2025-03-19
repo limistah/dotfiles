@@ -8,7 +8,6 @@
 --
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 require("config.options")
-require("config.keymaps")
 require("config.autocmd")
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -47,6 +46,6 @@ require("lazy").setup(pluginSpecs, {
 })
 
 require("config.whichkey")
-
+require("config.keymaps")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,5 +1,6 @@
 ---@module "lazy"
 ---@type LazySpec
+
 return {
 	{
 		"glacambre/firenvim",

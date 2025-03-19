@@ -1,5 +1,7 @@
+---@module "lazy"
+---@type LazySpec
 return {
-  {
-    'tpope/vim-sleuth',
-  },
+	{
+		"tpope/vim-sleuth",
+	},
 }
