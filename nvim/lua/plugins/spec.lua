@@ -6,7 +6,7 @@ return {
 	require("plugins.mason-tool-installer"),
 	require("plugins.telescope"),
 	require("plugins.copilot"),
-	require("nvim.lua.plugins.codeium"),
+	require("plugins.codeium"),
 	require("plugins.markdown"),
 	require("plugins.markdown-preview"),
 	require("plugins.conform"), -- auto formatter
@@ -52,4 +52,8 @@ return {
 	require("plugins.tiny-inline-diagnostic"),
 	-- show the errors for a file
 	require("plugins.trouble"),
+	-- folding and unfolding texts
+	require("plugins.ufo"),
+	-- wakatime
+	require("plugins.wakatime"),
 }

@@ -8,8 +8,13 @@ local g = vim.g
 --
 --
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+o.foldcolumn = "1" -- '0' is not bad
+o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+o.foldlevelstart = 99
+o.foldenable = true
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
@@ -25,7 +30,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -35,7 +40,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -49,7 +54,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -66,10 +71,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -77,35 +82,35 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-opt.backspace = { 'start', 'eol', 'indent' }
-opt.path:append { '**' }
-opt.spelllang = { 'en', 'sv' }
-opt.wildignore:append {
-  '*.o',
-  '*.obj',
-  '*.dll',
-  '*.exe',
-  '*.pyc',
-  '*.class',
-  '*.swp',
-  '*.swo',
-  '*.DS_Store',
-  '*/node_modules/*',
-  '*/target/*',
-  '*/build/*',
-  '*/dist/*',
-  '*/.git/*',
-  '*/.svn/*',
-  '*/.venv/*',
-  '*/venv/*',
-}
-if vim.fn.executable 'rg' == 1 then
-  opt.grepprg = 'rg --vimgrep --smart-case --follow'
+opt.backspace = { "start", "eol", "indent" }
+opt.path:append({ "**" })
+opt.spelllang = { "en", "sv" }
+opt.wildignore:append({
+	"*.o",
+	"*.obj",
+	"*.dll",
+	"*.exe",
+	"*.pyc",
+	"*.class",
+	"*.swp",
+	"*.swo",
+	"*.DS_Store",
+	"*/node_modules/*",
+	"*/target/*",
+	"*/build/*",
+	"*/dist/*",
+	"*/.git/*",
+	"*/.svn/*",
+	"*/.venv/*",
+	"*/venv/*",
+})
+if vim.fn.executable("rg") == 1 then
+	opt.grepprg = "rg --vimgrep --smart-case --follow"
 else
-  opt.grepprg = 'grep -n $* /dev/null'
+	opt.grepprg = "grep -n $* /dev/null"
 end
 -- Add asterisks in block comments
-opt.formatoptions:append { 'r' }
+opt.formatoptions:append({ "r" })
 
 -- Use spaces for tabs and whatnot
 o.tabstop = 4
@@ -117,8 +122,8 @@ o.expandtab = true
 opt.swapfile = false
 opt.backup = false
 
-local undodir = os.getenv 'HOME' .. '/.local/share/nvim/undo'
-vim.fn.mkdir(undodir, 'p') -- Create the directory if it doesn't exist
+local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
 opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
@@ -127,11 +132,11 @@ opt.undolevels = 10000
 opt.swapfile = false
 opt.backup = false
 
-local undodir = os.getenv 'HOME' .. '/.local/share/nvim/undo'
-vim.fn.mkdir(undodir, 'p') -- Create the directory if it doesn't exist
+local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
 opt.undodir = undodir
 opt.undofile = true
 opt.undolevels = 10000
 
 -- Command-line abbreviation: Expand 'ff' into 'FzfLua'
-vim.cmd [[cabbrev ff FzfLua]]
+vim.cmd([[cabbrev ff FzfLua]])
