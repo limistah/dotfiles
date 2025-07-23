@@ -1,3 +1,5 @@
+require("rcmd")
+
 hs = hs
 hs.loadSpoon("AClock")
 

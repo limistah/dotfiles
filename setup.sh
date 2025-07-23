@@ -15,4 +15,7 @@ if ! command -v stow >/dev/null 2>&1; then
     fi
 fi
 
-stow .
+
+defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
+
+stow . --adopt
