@@ -5,4 +5,5 @@
 --ignore=.gitmodules
 --ignore=.vscode/extensions/github.copilot*
 --ignore=DS_Store
+--ignore=setup.sh
 --ignore=atuin/*
