@@ -19,3 +19,6 @@ fi
 defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 
 stow . --adopt
+
+
+# still, some new things can still happen here

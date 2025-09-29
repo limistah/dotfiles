@@ -1,91 +1,106 @@
-local opt = vim.opt
-local o = vim.o
-local g = vim.g
 
---
--- Set <space> as the leader key
--- See `:help mapleader`
---
---
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local undodir = os.getenv("HOME") .. "/./local/share/nvim/undo"
+vim.fn.mkdir(undodir, "p") -- create the undodir if not exists
 
-o.foldcolumn = "1" -- '0' is not bad
-o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-o.foldlevelstart = 99
-o.foldenable = true
+local options = {
+  -- Clipboard settings
+  clipboard = 'unnamedplus', -- Use system clipboard
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+  -- Line numbering
+  number = true, -- Show line numbers
+  relativenumber = true, -- Show relative line numbers
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+  -- Backup and swap files
+  swapfile = false, -- Disable swap file
+  backup = false, -- Disable backup file
 
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
-vim.opt.relativenumber = true
+  -- Undo History
+  undodir = undodir,
+  undofile = true,
+  undolevels = 10000,
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+  -- Text wrapping and scrolling
+  wrap = false, -- Disable line wrapping
+  smoothscroll = true, -- Enable smooth scrolling
+  scrolloff = 10, -- Minimum number of screen lines to keep above and below the cursor
+  
+  -- Text folding
+  foldcolumn = '1',
+  foldlevel = 99, -- Using ufo provider need a large value
+  foldlevelstart = 99,
+  foldenable = true,
 
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+  -- Enable mouse mode, can be useful for resizing splits for example!
+  showmode = false,
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+  -- Mouse and cursor settings
+  mouse = '', -- Disable mouse support
+  guicursor = '', -- Disable GUI cursor
+  cursorline = true, -- show which line the cursor is on
 
--- Enable break indent
-vim.opt.breakindent = true
+  -- Splitting behavior
+  splitright = true, -- Split vertical window to the right
+  splitbelow = true,
 
--- Save undo history
-vim.opt.undofile = true
+  -- Indentation and tab settings
+  expandtab = true, -- Use spaces instead of tabs
+  cindent = true, -- Enable C-style indentation
+  smarttab = true, -- Insert appropriate number of spaces on tab
+  smartindent = true, -- Smart autoindenting on new lines
+  shiftwidth = 2, -- Number of spaces to use for each step of (auto)indent
+  tabstop = 2, -- Number of spaces that a <Tab> in the file counts for
+  breakindent = true, -- Enable break indent
+  shiftround = true,
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+  -- Search settings
+  hlsearch = false, -- Disable highlight on search
+  incsearch = true, -- Show search matches as you type
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+  -- Visual settings
+  termguicolors = true, -- Enable true color support
+  -- colorcolumn = '130', -- Highlight column 130
+  cursorline = true, -- Highlight the current line
 
--- Decrease update time
-vim.opt.updatetime = 250
+  -- Performance settings
+  updatetime = 50, -- Faster completion (default is 4000ms)
 
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+  -- For obsidian.nvim
+  cole = 2,
 
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+  -- Keep signcolumn on by default
+  signcolumn = "yes",
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+  -- Decrease mapped sequence wait time
+  -- Displays which-key popup sooner
+  timeoutlen = 300,
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+  backspace = { "start", "eol", "indent" },
 
--- Show which line your cursor is on
-vim.opt.cursorline = true
+  -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+  ignorecase = true,
+  smartcase = true,
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+  -- Sets how neovim will display certain whitespace characters in the editor.
+  --  See `:help 'list'`
+  --  and `:help 'listchars'`
+  list = true,
+  listchars = { tab = "» ", trail = "·", nbsp = "␣" },
 
-opt.backspace = { "start", "eol", "indent" }
-opt.path:append({ "**" })
-opt.spelllang = { "en", "sv" }
-opt.wildignore:append({
+  -- Preview substitutions live, as you type!
+  inccommand = "split"
+}
+
+for option, value in pairs(options) do
+  vim.opt[option] = value
+end
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
+vim.opt.path:append({ "**" })
+vim.opt.spelllang = { "en", "sv" }
+vim.opt.wildignore:append({
 	"*.o",
 	"*.obj",
 	"*.dll",
@@ -105,38 +120,12 @@ opt.wildignore:append({
 	"*/venv/*",
 })
 if vim.fn.executable("rg") == 1 then
-	opt.grepprg = "rg --vimgrep --smart-case --follow"
+	vim.opt.grepprg = "rg --vimgrep --smart-case --follow"
 else
-	opt.grepprg = "grep -n $* /dev/null"
+	vim.opt.grepprg = "grep -n $* /dev/null"
 end
 -- Add asterisks in block comments
-opt.formatoptions:append({ "r" })
+vim.opt.formatoptions:append({ "r" })
 
--- Use spaces for tabs and whatnot
-o.tabstop = 4
-o.shiftwidth = 4
-o.shiftround = true
-o.expandtab = true
-
--- Setting up undo
-opt.swapfile = false
-opt.backup = false
-
-local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
-vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
-opt.undodir = undodir
-opt.undofile = true
-opt.undolevels = 10000
-
--- Setting up undo
-opt.swapfile = false
-opt.backup = false
-
-local undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
-vim.fn.mkdir(undodir, "p") -- Create the directory if it doesn't exist
-opt.undodir = undodir
-opt.undofile = true
-opt.undolevels = 10000
-
--- Command-line abbreviation: Expand 'ff' into 'FzfLua'
-vim.cmd([[cabbrev ff FzfLua]])
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = false
