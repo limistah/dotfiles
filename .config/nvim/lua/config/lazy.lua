@@ -11,11 +11,11 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 local pluginSpecs = {
-    spec = {
-        { import = 'plugins' }
-    },
+	spec = {
+		{ import = "plugins" },
+	},
 
-    ui = {
+	ui = {
 		-- If you are using a Nerd Font: set icons to an empty table which will use the
 		-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
 		icons = vim.g.have_nerd_font and {} or {
@@ -35,9 +35,27 @@ local pluginSpecs = {
 		},
 	},
 
-    change_detection = {
-        notify = false -- disable the notification when a change is detected!
-    }
+	change_detection = {
+		notify = false, -- disable the notification when a change is detected!
+	},
+
+	install = {
+		-- Do not automatically install on startup.
+		missing = false,
+	},
+	performance = {
+		rtp = {
+			-- Stuff I don't use.
+			disabled_plugins = {
+				"gzip",
+				"rplugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 }
 
 require("lazy").setup(pluginSpecs)

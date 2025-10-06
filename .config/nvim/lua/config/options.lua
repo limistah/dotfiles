@@ -99,7 +99,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 vim.opt.path:append({ "**" })
-vim.opt.spelllang = { "en", "sv" }
+vim.opt.spelllang = { "en" }
 vim.opt.wildignore:append({
 	"*.o",
 	"*.obj",
