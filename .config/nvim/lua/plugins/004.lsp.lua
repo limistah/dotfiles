@@ -16,133 +16,13 @@ return {
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{ "j-hui/fidget.nvim", opts = {} },
 
-		-- Allows extra capabilities provided by nvim-cmp
-		"hrsh7th/cmp-nvim-lsp",
-
-		-- Nvim-cmp: A completion engine plugin for Neovim written in Lua
-		"hrsh7th/nvim-cmp",
-
-		-- nvim-cmp source for buffer words
-		"hrsh7th/cmp-buffer",
-
-		-- nvim-cmp source for filesystem paths
-		"hrsh7th/cmp-path",
-
-		-- nvim-cmp source for Neovim's command-line
-		"hrsh7th/cmp-cmdline",
-
-		-- LuaSnip: A snippet engine for Neovim written in Lua
-		"L3MON4D3/LuaSnip",
-
-		-- nvim-cmp source for LuaSnip
-		"saadparwaiz1/cmp_luasnip",
-
 		-- lspkind for awesome icons
 		"onsails/lspkind.nvim",
+
+		-- "saghen/blink.cmp",
 	},
 	config = function()
 		require("fidget").setup({})
-		local cmp = require("cmp")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local lspkind = require("lspkind")
-		local luasnip = require("luasnip")
-
-		local capabilities = vim.tbl_deep_extend(
-			"force", -- Use 'force' to overwrite conflicting keys
-			{}, -- Start with an empty table
-			vim.lsp.protocol.make_client_capabilities(), -- Default LSP client capabilities
-			cmp_nvim_lsp.default_capabilities() -- Capabilities required for nvim-cmp
-		)
-
-		-- Global Diagnostic Configuration
-		vim.diagnostic.config({
-			virtual_text = false,
-			signs = true,
-			underline = true,
-			update_in_insert = false,
-			severity_sort = true,
-		})
-
-		-- Setup completion configuration for nvim-cmp
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
-			},
-
-			mapping = cmp.mapping.preset.insert({
-				-- Mapping for triggering completion
-				["<C-Space>"] = cmp.mapping.complete(),
-				-- Mapping for scrolling documentation upwards
-				["<C-u>"] = cmp.mapping.scroll_docs(-4),
-				-- Mapping for scrolling documentation downwards
-				["<C-d>"] = cmp.mapping.scroll_docs(4),
-				-- Mapping for closing completion window
-				["<C-e>"] = cmp.mapping.close(),
-				-- Mapping for confirming selection with Enter key
-				-- ['<CR>'] = cmp.mapping.confirm {
-				--   behavior = cmp.ConfirmBehavior.Replace,
-				--   select = true,
-				-- },
-				-- Mapping for selecting next item in completion menu with Tab
-				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
-				-- Mapping for selecting previous item in completion menu with Shift+Tab
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
-			}),
-
-			sources = cmp.config.sources({
-				-- copilot
-				{ name = "copilot", group_index = 2 },
-				-- Set source for LSP
-				{ name = "nvim_lsp" },
-				-- Set source for file paths
-				{ name = "path" },
-				-- Set source for LuaSnip snippets
-				{ name = "luasnip" },
-			}, {
-				-- If cmp haven't found anything in the first table, it goes to this one
-				{ name = "buffer" },
-			}),
-
-			formatting = {
-				format = lspkind.cmp_format({
-					mode = "symbol_text",
-					maxwidth = 50,
-					ellipsis_char = "...",
-					show_labelDetails = true,
-				}),
-			},
-
-			experimental = {
-				ghost_text = true,
-			},
-		})
-
-		-- Setup completion configuration for search command-line mode
-		cmp.setup.cmdline({ "?", "/" }, {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				-- Set source for buffer words
-				{ name = "buffer" },
-			},
-		})
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -153,7 +33,7 @@ return {
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-		local servers = {
+		local ensure_installed = {
 			clangd = {},
 			ts_ls = {},
 			astro = {},
@@ -198,9 +78,7 @@ return {
 					},
 				},
 			},
-		}
 
-		local formatters = {
 			"prettier",
 			"prettierd",
 			"stylua",
@@ -217,13 +95,7 @@ return {
 		--  You can press `g?` for help in this menu.
 		require("mason").setup()
 
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, formatters)
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format Lua code
-		})
+		
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
@@ -237,20 +109,6 @@ return {
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},
-		})
-
-		-- Setup completion configuration for command-line mode
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				-- Set source for file paths
-				{ name = "path" },
-			}, {
-				-- Set source for command-line commands
-				{ name = "cmdline" },
-			}),
-			-- Allow non-prefix matching for symbols
-			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 
 		vim.keymap.set("n", "gd", function()

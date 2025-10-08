@@ -1,63 +1,105 @@
 -- Auto-completion:
 return {
 	"saghen/blink.cmp",
-	dependencies = "LuaSnip",
+	dependencies = {
+		"fang2hou/blink-copilot",
+		{
+			"L3MON4D3/LuaSnip",
+			lazy = true,
+			dependencies = { "rafamadriz/friendly-snippets" },
+		},
+	},
 	build = "cargo +nightly build --release",
-	event = "InsertEnter",
+	event = { "InsertEnter", "CmdlineEnter" },
 	opts = {
-        fuzzy = {
-            implementation = "prefer_rust"
-        },
+
 		keymap = {
-			["<CR>"] = { "accept", "fallback" },
-			["<C-\\>"] = { "hide", "fallback" },
-			["<C-n>"] = { "select_next", "show" },
-			["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
-			["<C-p>"] = { "select_prev" },
-			["<C-b>"] = { "scroll_documentation_up", "fallback" },
-			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+			preset = "super-tab",
+		},
+
+		signature = {
+			enabled = true,
+			window = { border = "rounded", show_documentation = false },
+		},
+		fuzzy = {
+			implementation = "prefer_rust",
 		},
 		completion = {
-			list = {
-				-- Insert items while navigating the completion list.
-				selection = { preselect = false, auto_insert = true },
-				max_items = 10,
+			accept = { auto_brackets = { enabled = true } },
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 250,
+				treesitter_highlighting = true,
+				update_delay_ms = 50,
+				window = { border = "rounded" },
 			},
-			documentation = { auto_show = true },
-			menu = { scrollbar = false },
+			list = {
+				selection = {
+					preselect = true,
+					auto_insert = false,
+				},
+			},
+			menu = {
+				border = "rounded",
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon", "kind" },
+					},
+					treesitter = { "lsp" },
+				},
+			},
+			trigger = { show_in_snippet = false, show_on_keyword = true },
 		},
-		snippets = { preset = "luasnip" },
-		-- Disable command line completion:
-		cmdline = { enabled = false },
+
 		sources = {
-			-- Disable some sources in comments and strings.
-			default = function()
-				local sources = { "lsp", "buffer" }
-				local ok, node = pcall(vim.treesitter.get_node)
-
-				if ok and node then
-					if not vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
-						table.insert(sources, "path")
-					end
-					if node:type() ~= "string" then
-						table.insert(sources, "snippets")
-					end
-				end
-
-				return sources
-			end,
+			default = { "lazydev", "lsp", "path", "snippets", "buffer", "codecompanion", "copilot" },
+			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					-- Make lazydev completions top priority (see `:h blink.cmp`)
+					score_offset = 4,
+				},
+				lsp = {
+					min_keyword_length = 2,
+					max_items = 3,
+					score_offset = 10,
+				},
+				path = {
+					min_keyword_length = 0,
+					score_offset = 1,
+				},
+				snippets = {
+					min_keyword_length = 2,
+				},
+				buffer = {
+					min_keyword_length = 4,
+					max_items = 5,
+					score_offset = 3,
+				},
+				copilot = {
+					name = "copilot",
+					module = "blink-copilot",
+					score_offset = 8,
+					max_items = 3,
+					async = true,
+				},
+			},
 			per_filetype = {
 				codecompanion = { "codecompanion", "buffer" },
 			},
 		},
 		appearance = {
-			kind_icons = require("config.icons").symbol_kinds,
+			use_nvim_cmp_as_default = false,
+			nerd_font_variant = "normal",
+		},
+		cmdline = {
+			keymap = { preset = "inherit" },
+			completion = { menu = { auto_show = true } },
 		},
 	},
 	config = function(_, opts)
 		require("blink.cmp").setup(opts)
-
-		-- Extend neovim's client capabilities with the completion ones.
-		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
 	end,
 }

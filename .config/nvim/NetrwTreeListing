@@ -1,0 +1,13 @@
+../
+nvim/
+| .format-configs/
+| .lua/
+| .old/
+| .themes/
+| lua/
+| .DS_Store
+| LICENSE.md
+| NetrwTreeListing
+| README.md
+| init.lua
+| lazy-lock.json

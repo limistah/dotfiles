@@ -89,6 +89,35 @@ map("i", "<CR>", cmp.mapping.confirm({ select = true }))
 --map("i", "<Tab>", cmp.mapping.select_next_item())
 map("i", "S-Tab", cmp.mapping.select_prev_item())
 
+map("i", "jj", "<Esc>", { desc = "Escape insert mode" })
+
+map("n", "<leader>d", '"_d', { desc = "Delete to the void register" })
+vim.keymap.set("n", "<leader>y", '"*y', { desc = "Yank to system clipboard" })
+
+vim.keymap.set("n", "<leader>Y", '"*Y', { desc = "Yank line to system clipboard" })
+vim.keymap.set(
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Substitute word under cursor" }
+)
+vim.keymap.set("n", "<leader>o", "o<esc>kO<Esc>j", { desc = "Add empty lines" })
+
+-- Improved J
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line with next" })
+
+-- Improved scrolling
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+
+-- Improved next match
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center" })
+
+-- Stuff for convenience
+vim.keymap.set("n", "<C-Return>", "o<Esc>", { desc = "New line at end" })
+vim.keymap.set("n", "<C-,>", "A,<Esc>", { desc = "Comma at end" })
+vim.keymap.set("n", "==", "gg=G", { desc = "Reindent file" })
 -- Manually trigger a completion from nvim-cmp.
 --  Generally you don't need this, because nvim-cmp will display
 --  completions whenever it has completion options available.

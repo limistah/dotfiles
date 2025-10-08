@@ -3,9 +3,31 @@ return {
 	"olimorris/codecompanion.nvim",
 	cmd = "CodeCompanion",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim", -- Or your preferred picker
-		"nvim-treesitter/nvim-treesitter", -- Also a hard requirement
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-telescope/telescope.nvim" }, -- Or your preferred picker
+		{ "nvim-treesitter/nvim-treesitter" }, -- Also a hard requirement
+		{
+            "saghen/blink.cmp",
+            opts = {
+                sources = {
+                    -- Add 'codecompanion' to the default enabled sources
+                    default = {
+                        "lsp", 
+                        "buffer", 
+                        "path",
+                        "codecompanion", -- <--- ADD THIS
+                    },
+                    providers = {
+                        -- Define the 'codecompanion' provider
+                        codecompanion = {
+                            name = "CodeCompanion",
+                            module = "codecompanion.providers.completion.blink", -- The module exported by codecompanion.nvim for blink.cmp
+                            enabled = true,
+                        },
+                    },
+                },
+            },
+        },
 		{
 			"ravitemer/mcphub.nvim",
 			build = "npm install -g mcp-hub@latest",
@@ -44,22 +66,9 @@ return {
 	},
 	opts = {
 		strategies = {
-			inline = {
-				keymaps = {
-					accept_change = {
-						modes = { n = "<leader>ay" },
-						description = "Accept the suggested change",
-					},
-					always_accept = {
-						modes = { n = "<leader>aY" },
-						description = "Accept and enable auto mode",
-					},
-					reject_change = {
-						modes = { n = "<leader>an" },
-						description = "Reject the suggested change",
-					},
-				},
-			},
+			--NOTE: Change the adapter as required
+			chat = { adapter = "copilot" },
+			inline = { adapter = "copilot" },
 		},
 		display = {
 			chat = {
@@ -93,9 +102,11 @@ return {
 				inline = { adapter = "copilot" },
 			},
 		},
+		opts = {
+			log_level = "DEBUG",
+		  }
 	},
 	config = function(_, opts)
 		require("codecompanion").setup(opts)
-		require("mcphub").setup()
 	end,
 }
