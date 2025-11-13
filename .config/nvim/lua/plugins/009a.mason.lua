@@ -40,7 +40,7 @@ return {
 					less = { validate = true },
 				},
 			},
-			eslint_d = {},
+			-- eslint_d = {},
 			emmet_language_server = {},
 			jsonls = {},
 			marksman = {},

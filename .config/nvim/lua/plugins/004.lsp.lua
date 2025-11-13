@@ -18,8 +18,6 @@ return {
 
 		-- lspkind for awesome icons
 		"onsails/lspkind.nvim",
-
-		-- "saghen/blink.cmp",
 	},
 	config = function()
 		require("fidget").setup({})
