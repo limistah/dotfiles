@@ -58,6 +58,7 @@ return {
 			jsonls = {},
 			marksman = {},
 			gopls = {},
+			harper_ls = {},
 			pyright = {},
 			rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -93,7 +94,6 @@ return {
 		--  You can press `g?` for help in this menu.
 		require("mason").setup()
 
-		
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({

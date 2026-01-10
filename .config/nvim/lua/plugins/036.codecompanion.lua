@@ -1,33 +1,34 @@
 -- "The I in LLM stands for intelligence".
 return {
 	"olimorris/codecompanion.nvim",
+	version = "18.*",
 	cmd = "CodeCompanion",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope.nvim" }, -- Or your preferred picker
 		{ "nvim-treesitter/nvim-treesitter" }, -- Also a hard requirement
 		{
-            "saghen/blink.cmp",
-            opts = {
-                sources = {
-                    -- Add 'codecompanion' to the default enabled sources
-                    default = {
-                        "lsp", 
-                        "buffer", 
-                        "path",
-                        "codecompanion", -- <--- ADD THIS
-                    },
-                    providers = {
-                        -- Define the 'codecompanion' provider
-                        codecompanion = {
-                            name = "CodeCompanion",
-                            module = "codecompanion.providers.completion.blink", -- The module exported by codecompanion.nvim for blink.cmp
-                            enabled = true,
-                        },
-                    },
-                },
-            },
-        },
+			"saghen/blink.cmp",
+			opts = {
+				sources = {
+					-- Add 'codecompanion' to the default enabled sources
+					default = {
+						"lsp",
+						"buffer",
+						"path",
+						"codecompanion", -- <--- ADD THIS
+					},
+					providers = {
+						-- Define the 'codecompanion' provider
+						codecompanion = {
+							name = "CodeCompanion",
+							module = "codecompanion.providers.completion.blink", -- The module exported by codecompanion.nvim for blink.cmp
+							enabled = true,
+						},
+					},
+				},
+			},
+		},
 		{
 			"ravitemer/mcphub.nvim",
 			build = "npm install -g mcp-hub@latest",
@@ -102,9 +103,37 @@ return {
 				inline = { adapter = "copilot" },
 			},
 		},
+		-- The v18 way to handle the git commit extension:
+		prompt_library = {
+			["Generate Commit Message"] = {
+				strategy = "inline",
+				description = "Generate a commit message",
+				opts = {
+					index = 1,
+					is_default = true,
+					is_slash_command = true,
+					short_name = "gitcommit",
+					auto_submit = true,
+				},
+				prompts = {
+					{
+						role = "system",
+						content = "Write a concise commit message in Conventional Commits format.",
+						opts = { visible = false },
+					},
+					{
+						role = "user",
+						content = function()
+							return "Here is the diff:\n\n" .. vim.fn.system("git diff --cached")
+						end,
+						opts = { contains_code = true },
+					},
+				},
+			},
+		},
 		opts = {
 			log_level = "DEBUG",
-		  }
+		},
 	},
 	config = function(_, opts)
 		require("codecompanion").setup(opts)

@@ -20,6 +20,11 @@ alias obsp='cd $HOME/Library/Work/obsp'
 alias edcfg='nvim $HOME/Library/Work/configs/dotfiles'
 alias edblog='nvim $HOME/Library/Work/portfolio/limsitah.dev'
 
+alias clr='clear'
+alias ex='exit'
+
+alias krd='cd $HOME/Library/Work/kredete'
+
 # command related aliases
 alias lg='lazygit'
 function gacp() {
