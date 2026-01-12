@@ -62,13 +62,12 @@ return {
 						-- diagnostics = { disable = { 'missing-fields' } },
 						runtime = { version = "LuaJIT" },
 						workspace = {
-						  library = vim.api.nvim_get_runtime_file("", true),
-						  checkThirdParty = false,
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
 						},
 						diagnostics = {
-						  globals = { "vim" },
+							globals = { "vim" },
 						},
-				  
 					},
 				},
 			},
@@ -93,10 +92,14 @@ return {
 		require("mason-tool-installer").setup(opts)
 		require("mason-lspconfig").setup()
 
-		local lspconfig = require("lspconfig")
-		for server, config in pairs(servers) do
-			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-			lspconfig[server].setup(config)
+		local configs = require("lspconfig.configs")
+		for server, override in pairs(servers) do
+			local defaults = configs[server]
+			if defaults and defaults.make_config then
+				local cfg = defaults.make_config(override or {})
+				cfg.capabilities = require("blink.cmp").get_lsp_capabilities(cfg.capabilities)
+				vim.lsp.start(vim.lsp.config(cfg))
+			end
 		end
 	end,
 
