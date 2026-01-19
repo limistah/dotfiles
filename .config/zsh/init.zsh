@@ -103,6 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR="nvim"
+
 export PATH=$PATH:$(go env GOPATH)/bin
 source "$HOME/.config/zsh/dependencies.zsh"
+source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/aliases.zsh"

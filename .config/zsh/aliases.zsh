@@ -27,8 +27,22 @@ alias krd='cd $HOME/Library/Work/kredete'
 
 # command related aliases
 alias lg='lazygit'
-function gacp() {
-    git add .
-    git commit -m "$1"
-    git push
-}
+
+### tmux related aliases
+alias tmx='tmuxifier'
+# Lists all tmuxifier commands
+alias tmxc='tmuxifier commands'
+# Lists all active tmux sessions
+alias tmxls='tmuxifier ls'
+# Loads a tmux session
+alias tmxs='tmuxifier s'
+# loads a new tmuxifier window
+alias tmxw='tmuxifier w'
+# creates a new tmuxifier session
+alias tmxns='tmuxifier ns'
+# create a new tmux session
+alias tmxes='tmuxifier es'
+# creates a new tmuxifier window
+alias tmxnw='tmuxifier nw'
+# edit a tmuxifier window
+alias tmxew='tmuxifier ew'
