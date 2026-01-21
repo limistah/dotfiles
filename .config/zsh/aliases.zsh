@@ -1,29 +1,26 @@
 alias python=python3
 
 # work directory related aliases
-alias work='cd $HOME/Library/Work'
-alias config='cd $HOME/Library/Work/configs'
+alias work='$HOME/Library/Work'
+alias config='$HOME/Library/Work/configs'
+
+
 
 # Portfolio directory work related aliases
-alias blog='cd $HOME/Library/Work/portfolio/limsitah.dev'
-
-# MC2 Work Related aliases
-alias mc2='cd $HOME/Library/Work/mcsquared/'
-alias mc2m='cd $HOME/Library/Work/mcsquared/mc2.mono/'
-alias mc2s='cd $HOME/Library/Work/mcsquared/mc2.service-mono/'
+alias blog='$HOME/Library/Work/portfolio/limsitah.dev'
 
 # Open Source related aliases
-alias oss='cd $HOME/Library/Work/oss'
-alias obsp='cd $HOME/Library/Work/obsp'
+alias oss='$HOME/Library/Work/oss'
+alias obsp='tmx_work "$HOME/Library/Work/obsp"'
 
 # editor related aliases
-alias edcfg='nvim $HOME/Library/Work/configs/dotfiles'
-alias edblog='nvim $HOME/Library/Work/portfolio/limsitah.dev'
+alias edcfg='tmx_work $HOME/Library/Work/configs/dotfiles'
+alias edblog='tmx_work $HOME/Library/Work/portfolio/limsitah.dev'
 
 alias clr='clear'
 alias ex='exit'
 
-alias krd='cd $HOME/Library/Work/kredete'
+alias krd='tmx_work $HOME/Library/Work/kredete'
 
 # command related aliases
 alias lg='lazygit'
@@ -43,6 +40,8 @@ alias tmxns='tmuxifier ns'
 # create a new tmux session
 alias tmxes='tmuxifier es'
 # creates a new tmuxifier window
-alias tmxnw='tmuxifier nw'
+alias tmxlw='tmuxifier lw'
 # edit a tmuxifier window
 alias tmxew='tmuxifier ew'
+
+alias tmxed="tmxlw  nvim"
