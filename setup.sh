@@ -37,7 +37,7 @@ defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/i
 
 stow . --adopt
 
-source "$HOME/.config/zsh/init.zsh"
+source "$HOME/.zshrc"
 
 # install oh-my-zsh if not installed
 if [ ! -d "$ZSH" ]; then
