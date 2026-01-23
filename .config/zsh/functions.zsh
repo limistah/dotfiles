@@ -24,5 +24,5 @@ function swh() {
     fi
 
     # Load and start the session
-    tmxs "$session"
+    tmuxifier load-session "$session"
 }
