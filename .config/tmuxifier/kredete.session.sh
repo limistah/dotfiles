@@ -7,7 +7,7 @@ if initialize_session "__SESSION_NAME__"; then
     run_cmd "nvim __DIR__"
 
     # Create service window with default layout
-    new_window "CLI"
+    new_window "Service CLI"
 fi
 
 # Finalize session creation and switch/attach to it.
