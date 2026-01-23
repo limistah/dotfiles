@@ -37,7 +37,8 @@ defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/i
 
 stow . --adopt
 
-# install oh-my-zsh if not installed
+source "$HOME/.zshrc"
+
 if [ ! -d "$ZSH" ]; then
     echo "Oh My Zsh not found. Installing..."
     git clone https://github.com/ohmyzsh/ohmyzsh.git "$ZSH"
@@ -48,9 +49,7 @@ if [ ! -d "$ZSH" ]; then
     source "$ZSH/oh-my-zsh.sh"
 fi
 
-source "$HOME/.zshrc"
-
-# install tmux if not installed
+# install tmux if not installed and setup tmuxifier
 if ! command -v tmux >/dev/null 2>&1; then
     echo "tmux not found. Installing..."
     if [ -x "$(command -v apt-get)" ]; then
@@ -68,5 +67,4 @@ if ! command -v tmux >/dev/null 2>&1; then
     git clone https://github.com/jimeh/tmuxifier.git $HOME/.tmuxifier
 fi
 
-
-# still, some new things can still happen here
+# more stuffs can still happen here!
