@@ -65,6 +65,7 @@ if ! command -v tmux >/dev/null 2>&1; then
         exit 1
     fi
     git clone https://github.com/jimeh/tmuxifier.git $HOME/.tmuxifier
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 # more stuffs can still happen here!
