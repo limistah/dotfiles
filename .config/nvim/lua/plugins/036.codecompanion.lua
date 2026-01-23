@@ -16,7 +16,7 @@ return {
 						"lsp",
 						"buffer",
 						"path",
-						"codecompanion", -- <--- ADD THIS
+						"codecompanion", --
 					},
 					providers = {
 						-- Define the 'codecompanion' provider

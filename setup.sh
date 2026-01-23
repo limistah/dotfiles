@@ -37,8 +37,6 @@ defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/i
 
 stow . --adopt
 
-source "$HOME/.zshrc"
-
 # install oh-my-zsh if not installed
 if [ ! -d "$ZSH" ]; then
     echo "Oh My Zsh not found. Installing..."
@@ -49,6 +47,8 @@ if [ ! -d "$ZSH" ]; then
     autoload -U compinit && compinit
     source "$ZSH/oh-my-zsh.sh"
 fi
+
+source "$HOME/.zshrc"
 
 # install tmux if not installed
 if ! command -v tmux >/dev/null 2>&1; then
