@@ -45,3 +45,5 @@ alias tmxlw='tmuxifier lw'
 alias tmxew='tmuxifier ew'
 
 alias tmxed="tmxlw  nvim"
+
+alias cd="z"

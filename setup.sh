@@ -55,6 +55,7 @@ if ! command -v tmux >/dev/null 2>&1; then
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update && sudo apt-get install -y tmux
     elif [ -x "$(command -v brew)" ]; then
+        brew install zoxide
         brew install tmux
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf install -y tmux
