@@ -27,6 +27,10 @@ local function location_with_total()
 	return string.format("%d:%d|%d:%d", line, total_lines, col, total_cols)
 end
 
+local function with_opencode()
+  return require("opencode").statusline()
+end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -35,7 +39,6 @@ return {
 	event = { "BufRead", "BufNewFile" },
 	dependencies = {
 		{ "echasnovski/mini.icons", lazy = true },
-		"franco-ruggeri/codecompanion-lualine.nvim"
 	},
 	opts = {
 		options = {
@@ -72,7 +75,7 @@ return {
 				"fileformat",
 				"filetype",
 				"filesize",
-				"codecompanion"
+				with_opencode,
 			},
 			lualine_y = { "progress" },
 			lualine_z = { location_with_total },
@@ -89,7 +92,6 @@ return {
 			"lazy",
 			"man",
 			"mason",
-			"oil",
 			"trouble",
 		},
 	},

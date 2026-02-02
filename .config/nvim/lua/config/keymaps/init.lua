@@ -1,0 +1,5 @@
+require("config.keymaps.core")
+require("config.keymaps.leader")
+require("config.keymaps.lsp")
+require("config.keymaps.plugins")
+require("config.keymaps.cmp")

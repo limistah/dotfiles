@@ -69,4 +69,6 @@ if ! command -v tmux >/dev/null 2>&1; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+curl -fsSL https://opencode.ai/install | bash
+
 # more stuffs can still happen here!

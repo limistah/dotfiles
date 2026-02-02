@@ -6,6 +6,9 @@ if initialize_session "__SESSION_NAME__"; then
     new_window "Editor"
     run_cmd "nvim __DIR__"
 
+    new_window "Opencode AI"
+    run_cmd "opencode"
+
     # Create service window with default layout
     new_window "CLI"
 fi

@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		"niuiic/core.nvim",
 		"rcarriga/nvim-notify",
-        "niuiic/omega.nvim",
+    "niuiic/omega.nvim",
 	},
 
 	config = function()

@@ -1,11 +1,42 @@
-local function toggle_inlay_action()
-	require("tiny-code-action").code_action({})
-end
-
 local wk = require("which-key")
 
 wk.add({
-	--                                 ╭───────────╮
+  -- Diagnostics
+  { "<leader>q", vim.diagnostic.setloclist, desc = "Diagnostics → loclist" },
+
+  -- Clipboard
+  { "<leader>d", '"_d', desc = "Delete to void register" },
+  { "<leader>y", '"+y', desc = "Yank to system clipboard" },
+  { "<leader>Y", '"+Y', desc = "Yank line to system clipboard" },
+
+  -- Search & replace
+  {
+    "<leader>s",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    desc = "Substitute word under cursor",
+  },
+
+  -- Insert spacing
+  { "<leader>o", "o<Esc>kO<Esc>j", desc = "Insert empty lines" },
+
+  -- Paths
+  {
+    "<leader>fp",
+    function() vim.fn.setreg("+", vim.fn.expand("%:.")) end,
+    desc = "Copy file path",
+  },
+  {
+    "<leader>dp",
+    function() vim.fn.setreg("+", vim.fn.expand("%:h")) end,
+    desc = "Copy directory path",
+  },
+  {
+    "<leader>fn",
+    function() vim.fn.setreg("+", vim.fn.expand("%:t:r")) end,
+    desc = "Copy filename",
+  },
+
+  --                                 ╭───────────╮
 	--                                 │ Root menu │
 	--                                 ╰───────────╯
 	{ "<leader>l", "<cmd>Lazy<cr>", desc = "Lazy - plugin manager" },
@@ -16,8 +47,10 @@ wk.add({
 	--                                  ╭────────╮
 	--                                  │   AI   │
 	--                                  ╰────────╯
-	{ "<leader>a", group = "Artificial Intelligence" },
-	{ "<leader>at", "<cmd>CodeCompanionChat Toggle<CR>", desc = "Toggle CodeCompanion Chat" },
+-- use opencode as ai
+  { "<leader>a", group = "AI", icon = { icon = "󰭛 ", color = "purple" } },
+  { "<leader>aa", "<cmd>Opencode toggle<cr>", desc = "Toggle Opencode", icon = { icon = "󰭛 ", color = "purple" } },
+  { "<leader>ac", "<cmd>Copilot panel<cr>", desc = "Open Copilot panel", icon = { icon = " ", color = "cyan" } },
 	--                                  ╭────────╮
 	--                                  │ Buffer │
 	--                                  ╰────────╯

@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="nvim"
 
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$(go env GOPATH)/bin:$HOME/.opencode/bin
 source "$HOME/.config/zsh/dependencies.zsh"
 source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/aliases.zsh"
