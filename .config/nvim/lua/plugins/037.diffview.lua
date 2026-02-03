@@ -10,6 +10,7 @@ local icons = require("config.icons")
 
 return {
   "sindrets/diffview.nvim",
+  cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh", "DiffviewFileHistory" },
   keys = {
     { "<leader>df", "<cmd>DiffviewFileHistory<cr>", desc = "File history" },
     { "<leader>dd", "<cmd>DiffviewOpen<cr>", desc = "Diff view" },
@@ -122,5 +123,8 @@ return {
         },
       },
     }
+  end,
+  config = function(opts)
+    require("diffview").setup(opts)
   end,
 }
