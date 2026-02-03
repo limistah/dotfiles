@@ -1,5 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
+
+-- Neo-tree: File Explorer
+-- Modern file explorer with tree view, git status, and file operations.
+-- Provides a sidebar for browsing and managing project files.
+-- See: https://github.com/nvim-neo-tree/neo-tree.nvim
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	version = "*",

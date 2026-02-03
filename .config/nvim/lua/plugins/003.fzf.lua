@@ -1,8 +1,16 @@
+---@module "lazy"
+---@type LazySpec
+
+-- FZF-Lua: Fast Fuzzy Finder
+-- Provides blazing fast fuzzy finding capabilities using FZF.
+-- Alternative/complement to Telescope with different features and performance.
+-- See: https://github.com/ibhagwan/fzf-lua
+
 local icons = require("config.icons")
 
--- Picker, finder, etc.
 return {
 	"ibhagwan/fzf-lua",
+	enabled = false, -- Disabled in favor of Telescope
 	cmd = "FzfLua",
 	keys = {
 		{

@@ -1,4 +1,11 @@
--- Auto-completion:
+---@module "lazy"
+---@type LazySpec
+
+-- Blink.cmp: Fast Completion Engine
+-- High-performance completion engine with LSP, snippets, and more.
+-- Provides fast and intelligent autocompletion suggestions.
+-- See: https://github.com/saghen/blink.cmp
+
 return {
 	"saghen/blink.cmp",
 	version = "1.*",

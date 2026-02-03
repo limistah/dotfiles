@@ -1,6 +1,10 @@
 ---@module "lazy"
 ---@type LazySpec
----
+
+-- UFO: Code Folding
+-- Modern code folding using LSP and Treesitter.
+-- Provides beautiful and performant fold indicators.
+-- See: https://github.com/kevinhwang91/nvim-ufo
 
 return {
 	"kevinhwang91/nvim-ufo",

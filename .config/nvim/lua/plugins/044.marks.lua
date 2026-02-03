@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Marks: Enhanced Mark Management
+-- Better visualization and management of vim marks.
+-- Shows marks in the sign column and provides mark navigation.
+-- See: https://github.com/chentoast/marks.nvim
+
 return {
 	"chentoast/marks.nvim",
 	event = "VeryLazy",

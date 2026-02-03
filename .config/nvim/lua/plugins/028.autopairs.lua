@@ -1,7 +1,10 @@
 ---@module "lazy"
 ---@type LazySpec
--- autopairs
--- https://github.com/windwp/nvim-autopairs
+
+-- Autopairs: Automatic Bracket Pairing
+-- Automatically inserts closing brackets, quotes, and parentheses.
+-- Integrates with nvim-cmp for smart completion behavior.
+-- See: https://github.com/windwp/nvim-autopairs
 
 return {
 	"windwp/nvim-autopairs",

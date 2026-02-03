@@ -1,7 +1,12 @@
 ---@module "lazy"
 ---@type LazySpec
 
-return {-- Autoformat
+-- Conform: Code Formatter
+-- Autoformat your code using various formatters (Prettier, Black, Stylua, etc.).
+-- Supports format on save and multiple formatters per filetype.
+-- See: https://github.com/stevearc/conform.nvim
+
+return {
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },

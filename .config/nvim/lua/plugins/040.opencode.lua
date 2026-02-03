@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- OpenCode: AI Code Assistant
+-- AI-powered code assistance and chat integration.
+-- Provides code review, generation, and interactive prompts.
+-- See: https://github.com/NickvanDyke/opencode.nvim
+
 return {
   "NickvanDyke/opencode.nvim",
   dependencies = {

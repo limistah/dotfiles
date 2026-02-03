@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
---
+
+-- LSP Configuration: Language Server Protocol
+-- Configures language servers for autocompletion, diagnostics, formatting,
+-- and other IDE-like features. Integrates with Mason for LSP installation.
+-- See: https://github.com/neovim/nvim-lspconfig
+
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",

@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Goto Preview: Preview Definitions
+-- Preview definitions and references in floating windows.
+-- Allows peeking at code without leaving your current location.
+-- See: https://github.com/rmagatti/goto-preview
+
 return {
   'rmagatti/goto-preview',
   opts = {

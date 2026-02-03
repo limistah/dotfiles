@@ -1,13 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
---
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
+
+-- DAP: Debug Adapter Protocol
+-- Full-featured debugging support for multiple languages.
+-- Provides breakpoints, step debugging, variable inspection, and more.
+-- Includes UI for better debugging experience.
+-- See: https://github.com/mfussenegger/nvim-dap
 
 return {
 	-- NOTE: Yes, you can install new plugins here!

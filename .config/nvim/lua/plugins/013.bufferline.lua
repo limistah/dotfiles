@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Bufferline: Buffer Tabs
+-- Displays open buffers as tabs at the top of the editor.
+-- Provides visual indication of buffer status and LSP diagnostics.
+-- See: https://github.com/akinsho/bufferline.nvim
+
 return {
 	"akinsho/bufferline.nvim",
 	version = "*",

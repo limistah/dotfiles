@@ -1,4 +1,11 @@
--- Navigation with jump motions.
+---@module "lazy"
+---@type LazySpec
+
+-- Flash: Enhanced Motion
+-- Navigate your code with enhanced jump motions and search.
+-- Provides fast cursor movement to any visible location.
+-- See: https://github.com/folke/flash.nvim
+
 return {
 	"folke/flash.nvim",
 	event = "VeryLazy",

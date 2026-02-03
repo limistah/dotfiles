@@ -1,5 +1,12 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Treesitter: Advanced Syntax Highlighting and Code Understanding
+-- Provides better syntax highlighting, indentation, and code understanding
+-- using tree-sitter parsers. Enables advanced features like incremental selection.
+-- See: https://github.com/nvim-treesitter/nvim-treesitter
+
 return {
-	-- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	opts = {

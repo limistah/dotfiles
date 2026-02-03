@@ -1,3 +1,12 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Telescope: Fuzzy Finder
+-- Provides highly extensible fuzzy finder for files, buffers, LSP symbols,
+-- git files, grep search, and more. Essential for navigation and searching.
+-- See: https://github.com/nvim-telescope/telescope.nvim
+
+
 return {
 	-- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
@@ -8,8 +17,6 @@ return {
 		{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 			"nvim-telescope/telescope-fzf-native.nvim",
 
-			-- `build` is used to run some command when the plugin is installed/updated.
-			-- This is only run then, not every time Neovim starts up.
 			build = "make",
 
 			-- `cond` is a condition used to determine whether this plugin should be

@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
 
+-- Dashboard: Startup Screen
+-- Displays a customizable startup dashboard with shortcuts and ASCII art.
+-- Shows recent files, projects, and quick actions on Neovim launch.
+-- See: https://github.com/nvimdev/dashboard-nvim
+
 return {
 	"nvimdev/dashboard-nvim",
 	event = "VimEnter",

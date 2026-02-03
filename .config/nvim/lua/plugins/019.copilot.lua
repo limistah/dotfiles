@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
 
+-- Copilot: AI Code Completion
+-- GitHub Copilot integration for AI-powered code suggestions.
+-- Provides inline code completions and suggestions as you type.
+-- See: https://github.com/zbirenbaum/copilot.lua
+
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",

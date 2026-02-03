@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
 
+-- Code Runner: Quick Code Execution
+-- Quickly run code in various languages without leaving Neovim.
+-- Supports Python, Java, TypeScript, Rust, C, and more.
+-- See: https://github.com/CRAG666/code_runner.nvim
+
 return { 'CRAG666/code_runner.nvim',
   config = function ()
     require('code_runner').setup({

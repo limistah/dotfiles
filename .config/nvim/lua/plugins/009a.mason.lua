@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Mason: LSP/DAP/Linter/Formatter Installer
+-- Portable package manager for Neovim. Easily install and manage
+-- LSP servers, DAP servers, linters, and formatters.
+-- See: https://github.com/williamboman/mason.nvim
+
 return {
 	"williamboman/mason.nvim",
 	cmd = "Mason",

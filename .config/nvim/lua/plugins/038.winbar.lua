@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Winbar: Window Context Bar
+-- Displays file path and code context in the window bar.
+-- Shows current function/class location using LSP symbols.
+-- See: https://github.com/fgheng/winbar.nvim
+
 return {
 	"fgheng/winbar.nvim",
 	config = function()

@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Lualine: Status Line
+-- Fast and customizable status line showing file info, LSP status,
+-- git branch, diagnostics, and more.
+-- See: https://github.com/nvim-lualine/lualine.nvim
+
 local function show_macro_recording()
 	local recording_register = vim.fn.reg_recording()
 	if recording_register == "" then

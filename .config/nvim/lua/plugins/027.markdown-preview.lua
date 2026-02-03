@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
--- Markdown preview on the browser.
+
+-- Markdown Preview: Live Markdown Rendering
+-- Preview markdown files in real-time in your browser.
+-- Automatically updates preview as you edit the markdown file.
+-- See: https://github.com/iamcco/markdown-preview.nvim
+
 return {
         'iamcco/markdown-preview.nvim',
         ft = 'markdown',

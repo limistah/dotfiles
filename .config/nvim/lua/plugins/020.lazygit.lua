@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
---
+
+-- LazyGit: Git UI
+-- Terminal UI for git commands integrated into Neovim.
+-- Provides a full-featured git interface without leaving the editor.
+-- See: https://github.com/kdheepak/lazygit.nvim
+
 return {
 	"kdheepak/lazygit.nvim",
 	cmd = {

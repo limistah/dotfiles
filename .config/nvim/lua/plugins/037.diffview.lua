@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Diffview: Git Diff Viewer
+-- Advanced git diff and merge conflict resolution interface.
+-- Provides side-by-side diff view and file history browser.
+-- See: https://github.com/sindrets/diffview.nvim
+
 local icons = require("config.icons")
 
 return {

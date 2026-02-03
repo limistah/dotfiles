@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
 
+-- Harpoon: File Navigation
+-- Quick file navigation by marking and switching between frequently used files.
+-- Allows instant jumping to marked files with keybindings.
+-- See: https://github.com/ThePrimeagen/harpoon
+
 return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',

@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Grug Far: Find and Replace
+-- Advanced find and replace with live preview.
+-- Supports regex patterns and multi-file replacements.
+-- See: https://github.com/MagicDuck/grug-far.nvim
+
 return {
     'MagicDuck/grug-far.nvim',
     cmd = 'GrugFar',

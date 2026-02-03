@@ -1,5 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
+
+-- Noice: Enhanced UI
+-- Completely replaces the UI for messages, cmdline, and popupmenu.
+-- Provides beautiful, modern UI elements for Neovim.
+-- See: https://github.com/folke/noice.nvim
+
 return {
 	"folke/noice.nvim",
 	dependencies = {

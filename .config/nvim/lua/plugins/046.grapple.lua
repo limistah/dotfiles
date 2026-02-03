@@ -1,3 +1,11 @@
+---@module "lazy"
+---@type LazySpec
+
+-- Grapple: File Tagging and Navigation
+-- Tag and quickly navigate between important files in your project.
+-- Alternative to Harpoon with additional features and scoping.
+-- See: https://github.com/cbochs/grapple.nvim
+
 return {
   'cbochs/grapple.nvim',
   dependencies = {

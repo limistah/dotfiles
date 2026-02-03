@@ -1,31 +1,89 @@
+---@module "lazy"
+---@type LazySpec
+
+-- CodeSnap: Code Screenshot Generator
+-- Creates beautiful screenshots of your code with syntax highlighting.
+-- Useful for sharing code snippets on social media or documentation.
+-- See: https://github.com/mistricky/codesnap.nvim
+
 return {
-	"niuiic/code-shot.nvim",
-	dependencies = {
-		"niuiic/core.nvim",
-		"rcarriga/nvim-notify",
-    "niuiic/omega.nvim",
+	"mistricky/codesnap.nvim",
+	tag = "v2.0.0",
+	enabled = false, -- Disabled for now
+	cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapASCII", "CodeSnapHighlight", "CodeSnapSaveHighlight" },
+	opts = {
+		show_line_number = true,
+		highlight_color = "#ffffff20",
+		show_workspace = true,
+		snapshot_config = {
+				theme = "candy",
+				window = {
+					mac_window_bar = true,
+					shadow = {
+						radius = 20,
+						color = "#00000040",
+					},
+					margin = {
+						x = 82,
+						y = 82,
+					},
+					border = {
+						width = 1,
+						color = "#ffffff30",
+					},
+					title_config = {
+						color = "#ffffff",
+						font_family = "Pacifico",
+					},
+				},
+				themes_folders = {},
+				fonts_folders = {},
+				line_number_color = "#495162",
+				command_output_config = {
+					prompt = "❯",
+					font_family = "CaskaydiaCove Nerd Font",
+					prompt_color = "#F78FB3",
+					command_color = "#98C379",
+					string_arg_color = "#ff0000",
+				},
+				code_config = {
+					font_family = "CaskaydiaCove Nerd Font",
+					breadcrumbs = {
+						enable = true,
+						separator = "/",
+						color = "#80848b",
+						font_family = "CaskaydiaCove Nerd Font",
+					},
+				},
+				watermark = {
+					content = "CodeSnap.nvim",
+					font_family = "Pacifico",
+					color = "#ffffff",
+				},
+				background = {
+					start = {
+						x = 0,
+						y = 0,
+					},
+					["end"] = {
+						x = "max",
+						y = 0,
+					},
+					stops = {
+						{
+							position = 0,
+							color = "#6bcba5",
+						},
+						{
+							position = 1,
+							color = "#caf4c2",
+						},
+					},
+				},
+			},
+		},
+	keys = {
+		{ "<leader>ss", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot to clipboard" },
+		{ "<leader>sS", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot to file" },
 	},
-
-	config = function()
-		local code_shot = require("code-shot")
-		local core = require("core")
-
-		vim.keymap.set("n", "<C-p>", function()
-			local buf_name = vim.api.nvim_buf_get_name(0)
-			local file_name = core.file.name(buf_name)
-
-			-- Check if file_name is nil. If it is, provide a default name.
-			if not file_name or file_name == "" then
-				file_name = "code_shot"
-			end
-
-			local options = {
-				output = file_name .. ".png",
-				theme = "Gruvbox",
-			}
-
-			-- Call the shot function with the defined options
-			code_shot.shot(options)
-		end)
-	end,
 }

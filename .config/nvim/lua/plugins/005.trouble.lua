@@ -1,6 +1,11 @@
 ---@module "lazy"
 ---@type LazySpec
 
+-- Trouble: Diagnostics and Issues Panel
+-- Displays a beautiful list of LSP diagnostics, quickfix items, and more.
+-- Makes it easy to navigate through errors, warnings, and references.
+-- See: https://github.com/folke/trouble.nvim
+
 return {
 	"folke/trouble.nvim",
 	opts = {

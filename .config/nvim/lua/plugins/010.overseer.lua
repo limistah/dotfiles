@@ -1,6 +1,11 @@
--- Task runner.
 ---@module "lazy"
 ---@type LazySpec
+
+-- Overseer: Task Runner
+-- Asynchronous task runner for running builds, tests, and other commands.
+-- Provides a task list UI and integrates with DAP for debugging.
+-- See: https://github.com/stevearc/overseer.nvim
+
 return {
 	"stevearc/overseer.nvim",
 	opts = {
