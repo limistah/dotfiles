@@ -7,6 +7,3 @@ window-decoration = true
 # keybind = global:cmd+/=toggle_quick_terminal
 macos-option-as-alt = true
 background-opacity = 0.7
-status-bar-widget = cpu_usage:name="CPU"
-status-bar-widget = memory_usage:name="RAM"
-status-bar = CPU<->RAM
