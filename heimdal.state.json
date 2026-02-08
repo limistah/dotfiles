@@ -4,7 +4,7 @@
   "dotfiles_path": "/Users/aleemisiaka/.dotfiles",
   "repo_url": "https://github.com/limistah/dotfiles",
   "last_sync": null,
-  "last_apply": "2026-02-08T10:48:33.215819Z",
+  "last_apply": "2026-02-08T10:57:20.024393Z",
   "machine": {
     "id": "machine-146633b86326aa",
     "hostname": "Aleems-MacBook-Pro-2.local",
@@ -13,14 +13,14 @@
     "arch": "arm64",
     "user": "aleemisiaka",
     "first_seen": "2026-02-08T07:54:41.821971Z",
-    "last_seen": "2026-02-08T10:48:33.215819Z"
+    "last_seen": "2026-02-08T10:57:20.024393Z"
   },
   "heimdal_version": "1.2.2",
   "lineage": {
     "id": "f1dd6179-c682-4e24-9646-a2d164d8fb11",
-    "serial": 11,
-    "parent_serial": 10,
-    "git_commit": "05ba59690e1118d58a67b29ab7ef0d8264a66522",
+    "serial": 12,
+    "parent_serial": 11,
+    "git_commit": "9d5069d26301ea27f9709abfe7a696b0dad8f224",
     "machines": [
       "machine-146633b86326aa"
     ]
