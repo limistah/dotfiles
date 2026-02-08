@@ -1,0 +1,15 @@
+{
+  "id": "9fb8b422-0405-4adb-8941-8b541ea767d6",
+  "lock_type": "hybrid",
+  "operation": "commit",
+  "machine": {
+    "id": "machine-146633b86326aa",
+    "hostname": "Aleems-MacBook-Pro-2.local",
+    "pid": 34199,
+    "user": "aleemisiaka"
+  },
+  "created_at": "2026-02-08T08:50:27.285852Z",
+  "expected_duration_seconds": null,
+  "reason": "Committing changes",
+  "state_serial": 3
+}

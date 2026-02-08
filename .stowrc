@@ -7,3 +7,7 @@
 --ignore=DS_Store
 --ignore=setup.sh
 --ignore=atuin/*
+--ignore=heimdal*
+--ignore=README.MD
+--ignore=AGENTS.MD
+--ignore=setup.sh
