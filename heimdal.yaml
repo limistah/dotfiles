@@ -4,7 +4,7 @@
 
 heimdal:
   version: "1.0"
-  # repo: "git@github.com:username/dotfiles.git"
+  repo: "git@github.com:username/dotfiles.git"
   stow_compat: true
 
 # Files to ignore when symlinking
@@ -18,3 +18,5 @@ ignore:
 # Machine profiles
 profiles:
   personal:
+    dotfiles:
+      use_stowrc: true
