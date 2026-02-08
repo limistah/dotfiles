@@ -1,5 +1,7 @@
-.vscode/extensions/*
+ .vscode/extensions/*
 !.vscode/extensions/extensions.json
 
 .cursor/extensions/*
 !.cursor/extensions/extensions.json
+
+heimdal.state.lock
