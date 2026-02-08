@@ -9,5 +9,5 @@
 --ignore=atuin/*
 --ignore=heimdal*
 --ignore=README.MD
---ignore=AGENTS.MD
+--ignore=AGENTS.md
 --ignore=setup.sh
