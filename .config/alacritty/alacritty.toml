@@ -1,0 +1,5 @@
+blur = true
+
+import = [
+    "~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.toml"
+]
