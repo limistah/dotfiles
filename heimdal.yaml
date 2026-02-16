@@ -20,3 +20,6 @@ profiles:
   personal:
     dotfiles:
       use_stowrc: true
+    variables:
+      user_name: "Aleem Isiaka"
+      user_email: "aleemisiaka@gmail.com"
