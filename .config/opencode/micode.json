@@ -1,0 +1,10 @@
+{
+  "agents": {
+    "brainstormer": { "model": "github-copilot/claude-sonnet-4.5", "temperature": 0.8 },
+    "commander": { "maxTokens": 8192, "model": "github-copilot/claude-sonnet-4.5"}
+  },
+  "features": {
+    "mindmodelInjection": false
+  },
+  "compactionThreshold": 0.5
+}
