@@ -7,15 +7,16 @@
 -- See: https://github.com/akinsho/toggleterm.nvim
 
 return {
-    'akinsho/toggleterm.nvim',
-    config = function ()
-      require('toggleterm').setup({
-        open_mapping = '<C-/>',
-        terminal_mappings = true,
-        direction = 'float',
-        float_opts = {
-          border = 'curved',
-        },
-      })
-    end
+	"akinsho/toggleterm.nvim",
+	config = function()
+		require("toggleterm").setup({
+			open_mapping = "<C-/>",
+			terminal_mappings = true,
+			direction = "float",
+			float_opts = {
+				border = "curved",
+			},
+		})
+	end,
 }
+

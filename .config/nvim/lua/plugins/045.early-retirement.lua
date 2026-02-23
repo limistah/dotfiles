@@ -7,9 +7,10 @@
 -- See: https://github.com/chrisgrieser/nvim-early-retirement
 
 return {
-  'chrisgrieser/nvim-early-retirement',
-  event = 'BufReadPost',
-  opts = {
-    notificationOnAutoClose = true,
-  }
+	"chrisgrieser/nvim-early-retirement",
+	event = "BufReadPost",
+	opts = {
+		notificationOnAutoClose = true,
+	},
 }
+
