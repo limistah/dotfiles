@@ -5,3 +5,4 @@
 !.cursor/extensions/extensions.json
 
 heimdal.state.lock
+.config/rainfrog_config.toml
