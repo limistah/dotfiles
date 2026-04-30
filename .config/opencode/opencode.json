@@ -22,9 +22,9 @@
      }
    }
  },
- "plugin": [
-   "micode",
-   "opencode-wakatime",
-   "opencode-websearch-cited"
+"plugin": [
+  "superpowers@git+https://github.com/obra/superpowers.git",
+  "opencode-wakatime",
+  "opencode-websearch-cited"
  ]
 }
