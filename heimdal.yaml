@@ -1,0 +1,111 @@
+heimdal:
+  version: '1'
+  repo: git@github.com/limistah/dotfiles.git
+
+profiles:
+  work:
+    dotfiles: []
+    packages:
+      homebrew:
+        # Development tools
+        - neovim
+        - tmux
+        - fzf
+        - ripgrep
+        - tree
+        - zoxide
+        - lazygit
+        - gh
+        - stow
+
+        # Programming languages
+        - go
+        - rust
+        - zig
+        - python@3.14
+        - llvm
+
+        # Build tools
+        - cmake
+        - pkgconf
+
+        # CLI utilities
+        - btop
+        - wget
+        - yamlfmt
+        - grpcurl
+        - mas
+        - ast-grep
+        - sesh
+        - rainfrog
+
+        # Database/Backend
+        - supabase
+
+        # Static site generation
+        - hugo
+
+        # Security
+        - gnupg
+        - gpgme
+
+      homebrew_casks:
+        # Terminals
+        - alacritty
+        - ghostty
+
+        # Editors & IDEs
+        - visual-studio-code
+        - zed
+        - obsidian
+
+        # Browsers
+        - google-chrome
+
+        # Utilities
+        - ngrok
+        - tailscale-app
+
+        # Fonts
+        - font-meslo-lg-nerd-font
+
+      mas:
+        - {"id": 1569813296, "name": "1Password for Safari"}
+        - {"id": 682658836, "name": "GarageBand"}
+        - {"id": 1444383602, "name": "Goodnotes"}
+        - {"id": 408981434, "name": "iMovie"}
+        - {"id": 409183694, "name": "Keynote"}
+        - {"id": 1401495844, "name": "Netler"}
+        - {"id": 409203825, "name": "Numbers"}
+        - {"id": 1507139439, "name": "One Markdown"}
+        - {"id": 409201541, "name": "Pages"}
+        - {"id": 1596283165, "name": "rcmd"}
+        - {"id": 803453959, "name": "Slack"}
+        - {"id": 966085870, "name": "TickTick"}
+        - {"id": 310633997, "name": "WhatsApp"}
+
+packages:
+  common: []
+  homebrew: []
+  homebrew_casks: []
+  apt: []
+  dnf: []
+  pacman: []
+  apk: []
+  mas: []
+
+hooks:
+  post_apply:
+    - command: "curl -fsSL https://opencode.ai/install | bash"
+      description: "Install Opencode"
+      fail_on_error: true
+
+ignore:
+  - .git
+  - .gitignore
+  - heimdal.yaml
+  - .stowrc
+  - "*.md"
+  - LICENSE
+  - .DS_Store
+  - .config/yarn/global/node_modules

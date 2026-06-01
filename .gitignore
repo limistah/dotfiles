@@ -6,3 +6,5 @@
 
 heimdal.state.lock
 .config/rainfrog_config.toml
+.heimdal
+.config/yarn/global/node_modules
