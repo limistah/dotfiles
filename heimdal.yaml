@@ -38,6 +38,7 @@ profiles:
         - ast-grep
         - sesh
         - rainfrog
+        - zsh-completions
 
         # Database/Backend
         - supabase
@@ -88,10 +89,17 @@ packages:
   common: []
   homebrew: []
   homebrew_casks: []
-  apt: []
-  dnf: []
-  pacman: []
-  apk: []
+  apt:
+    - zsh  # Ensures zsh is installed
+    # zsh-completions is typically part of zsh-common on Debian/Ubuntu
+  dnf:
+    - zsh
+    - zsh-syntax-highlighting
+  pacman:
+    - zsh
+    - zsh-completions
+  apk:
+    - zsh
   mas: []
 
 hooks:
