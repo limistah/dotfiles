@@ -22,17 +22,17 @@ wk.add({
 	{ "<leader>bd", "<cmd>bdelete<CR>", desc = "Delete Buffer" },
 	{ "<leader>bX", "<cmd>%bd<CR>", desc = "Delete All Buffers" },
 
-	{
-		"<leader>bO",
-		DeleteOtherBuffers,
-		desc = "Delete Other Buffers",
-	},
-
 	-- =========================================================================
 	-- CODE
 	-- =========================================================================
 
 	{ "<leader>c", group = "Code" },
+
+	{
+		"<leader>ca",
+		vim.lsp.buf.code_action,
+		desc = "Code Actions",
+	},
 
 	{
 		"<leader>cf",
@@ -53,8 +53,38 @@ wk.add({
 		desc = "Lint Buffer",
 	},
 
+	{
+		"<leader>cg",
+		function()
+			require("grug-far").open({ transient = true })
+		end,
+		desc = "Find & Replace",
+		mode = { "n", "v" },
+	},
+
 	-- =========================================================================
-	-- FIND / TELESCOPE
+	-- DEBUG
+	-- =========================================================================
+
+	{ "<leader>D", group = "Debug" },
+	{
+		"<leader>Db",
+		function()
+			require("dap").toggle_breakpoint()
+		end,
+		desc = "Toggle Breakpoint",
+	},
+
+	{
+		"<leader>DB",
+		function()
+			require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+		end,
+		desc = "Conditional Breakpoint",
+	},
+
+	-- =========================================================================
+	-- FIND
 	-- =========================================================================
 
 	{ "<leader>f", group = "Find" },
@@ -66,7 +96,7 @@ wk.add({
 	{ "<leader>fr", tb.resume, desc = "Resume Search" },
 	{ "<leader>fd", tb.diagnostics, desc = "Diagnostics" },
 	{ "<leader>fc", tb.commands, desc = "Commands" },
-	{ "<leader>fh", tb.help_tags, desc = "Help Tags" },
+	{ "<leader>fh", tb.help_tags, desc = "Help" },
 
 	{
 		"<leader>fw",
@@ -75,7 +105,7 @@ wk.add({
 				search = vim.fn.expand("<cword>"),
 			})
 		end,
-		desc = "Word Under Cursor",
+		desc = "Current Word",
 	},
 
 	{
@@ -83,54 +113,10 @@ wk.add({
 		function()
 			tb.live_grep({
 				grep_open_files = true,
-				prompt_title = "Live Grep in Open Files",
+				prompt_title = "Live Grep Open Files",
 			})
 		end,
-		desc = "Grep Open Files",
-	},
-
-	{
-		"<leader>fN",
-		function()
-			tb.find_files({
-				cwd = vim.fn.stdpath("config"),
-			})
-		end,
-		desc = "Neovim Config",
-	},
-
-	-- =========================================================================
-	-- FILE
-	-- =========================================================================
-
-	{
-		"<leader>fp",
-		function()
-			vim.fn.setreg("+", vim.fn.expand("%:."))
-		end,
-		desc = "Copy File Path",
-	},
-
-	{
-		"<leader>fn",
-		function()
-			vim.fn.setreg("+", vim.fn.expand("%:t:r"))
-		end,
-		desc = "Copy Filename",
-	},
-
-	-- =========================================================================
-	-- DIRECTORY
-	-- =========================================================================
-
-	{ "<leader>d", group = "Directory" },
-
-	{
-		"<leader>dp",
-		function()
-			vim.fn.setreg("+", vim.fn.expand("%:h"))
-		end,
-		desc = "Copy Directory Path",
+		desc = "Open Files",
 	},
 
 	-- =========================================================================
@@ -196,15 +182,6 @@ wk.add({
 	},
 
 	{
-		"<leader>hm",
-		function()
-			local harpoon = require("harpoon")
-			harpoon.ui:toggle_quick_menu(harpoon:list())
-		end,
-		desc = "Menu",
-	},
-
-	{
 		"<leader>h1",
 		function()
 			require("harpoon"):list():select(1)
@@ -244,7 +221,6 @@ wk.add({
 
 	{ "<leader>la", vim.lsp.buf.code_action, desc = "Code Actions" },
 	{ "<leader>ld", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-	{ "<leader>lh", vim.lsp.buf.signature_help, desc = "Signature Help" },
 	{ "<leader>lr", vim.lsp.buf.rename, desc = "Rename Symbol" },
 
 	{ "<leader>ls", tb.lsp_document_symbols, desc = "Document Symbols" },
@@ -255,6 +231,13 @@ wk.add({
 	{ "<leader>lT", tb.lsp_type_definitions, desc = "Type Definitions" },
 
 	-- =========================================================================
+	-- MASON / LAZY
+	-- =========================================================================
+
+	{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason" },
+	{ "<leader>L", "<cmd>Lazy<CR>", desc = "Lazy" },
+
+	-- =========================================================================
 	-- MARKDOWN
 	-- =========================================================================
 
@@ -263,15 +246,8 @@ wk.add({
 	{
 		"<leader>Mp",
 		"<cmd>MarkdownPreviewToggle<CR>",
-		desc = "Markdown Preview",
+		desc = "Preview",
 	},
-
-	-- =========================================================================
-	-- MASON / LAZY
-	-- =========================================================================
-
-	{ "<leader>m", "<cmd>Mason<CR>", desc = "Mason" },
-	{ "<leader>L", "<cmd>Lazy<CR>", desc = "Lazy" },
 
 	-- =========================================================================
 	-- OVERSEER
@@ -284,7 +260,7 @@ wk.add({
 		function()
 			require("overseer").toggle()
 		end,
-		desc = "Toggle Overseer",
+		desc = "Toggle",
 	},
 
 	{
@@ -301,35 +277,53 @@ wk.add({
 		desc = "Run Task",
 	},
 
+	-- =========================================================================
+	-- QUICKFIX
+	-- =========================================================================
+
+	{ "<leader>q", group = "Quickfix" },
+
 	{
-		"<leader>oR",
+		"<leader>qq",
 		function()
-			local overseer = require("overseer")
-
-			local tasks = overseer.list_tasks({
-				recent_first = true,
-			})
-
-			if vim.tbl_isempty(tasks) then
-				vim.notify("No tasks found", vim.log.levels.WARN)
-				return
-			end
-
-			overseer.run_action(tasks[1], "restart")
-			overseer.open({ enter = false })
+			require("quicker").toggle()
 		end,
-		desc = "Restart Last Task",
+		desc = "Quickfix",
+	},
+
+	{
+		"<leader>ql",
+		function()
+			require("quicker").toggle({
+				loclist = true,
+			})
+		end,
+		desc = "Location List",
+	},
+
+	{
+		"<leader>qd",
+		function()
+			local quicker = require("quicker")
+
+			if quicker.is_open() then
+				quicker.close()
+			else
+				vim.diagnostic.setqflist()
+			end
+		end,
+		desc = "Diagnostics",
 	},
 
 	-- =========================================================================
-	-- RUNNER
+	-- RUN
 	-- =========================================================================
 
 	{ "<leader>r", group = "Run" },
 
 	{ "<leader>rr", "<cmd>RunCode<CR>", desc = "Run Code" },
 	{ "<leader>rf", "<cmd>RunFile<CR>", desc = "Run File" },
-	{ "<leader>rF", "<cmd>RunFile tab<CR>", desc = "Run File (Tab)" },
+	{ "<leader>rF", "<cmd>RunFile tab<CR>", desc = "Run File Tab" },
 	{ "<leader>rp", "<cmd>RunProject<CR>", desc = "Run Project" },
 	{ "<leader>rc", "<cmd>RunClose<CR>", desc = "Close Runner" },
 
@@ -341,10 +335,18 @@ wk.add({
 
 	{ "<leader>xx", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics" },
 	{ "<leader>xX", "<cmd>Trouble diagnostics toggle<CR>", desc = "Workspace Diagnostics" },
-	{ "<leader>xl", "<cmd>Trouble loclist toggle<CR>", desc = "Location List" },
-	{ "<leader>xq", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List" },
 	{ "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols" },
-	{ "<leader>xr", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "LSP References" },
+	{ "<leader>xr", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", desc = "References" },
+
+	-- =========================================================================
+	-- REFACTOR
+	-- =========================================================================
+
+	{ "<leader>z", group = "Refactor" },
+
+	-- extract
+	-- inline
+	-- debug helpers
 
 	-- =========================================================================
 	-- WINDOWS
@@ -352,40 +354,8 @@ wk.add({
 
 	{ "<leader>w", group = "Window" },
 
-	{ "<leader>wc", "<cmd>close<CR>", desc = "Close Window" },
-	{ "<leader>wh", "<cmd>split<CR>", desc = "Split Horizontal" },
-	{ "<leader>wv", "<cmd>vsplit<CR>", desc = "Split Vertical" },
-	{ "<leader>wo", "<cmd>only<CR>", desc = "Close Other Windows" },
-
-	-- =========================================================================
-	-- DIAGNOSTICS
-	-- =========================================================================
-
-	{ "<leader>q", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
-
-	-- =========================================================================
-	-- FOLDS
-	-- =========================================================================
-
-	{
-		"zR",
-		function()
-			require("ufo").openAllFolds()
-		end,
-		desc = "Open All Folds",
-	},
-
-	{
-		"zM",
-		function()
-			require("ufo").closeAllFolds()
-		end,
-		desc = "Close All Folds",
-	},
-
-	-- =========================================================================
-	-- HELP
-	-- =========================================================================
-
-	{ "<leader>k", "<cmd>Telescope keymaps<CR>", desc = "Search Keymaps" },
+	{ "<leader>wc", "<cmd>close<CR>", desc = "Close" },
+	{ "<leader>wh", "<cmd>split<CR>", desc = "Horizontal Split" },
+	{ "<leader>wv", "<cmd>vsplit<CR>", desc = "Vertical Split" },
+	{ "<leader>wo", "<cmd>only<CR>", desc = "Only" },
 })

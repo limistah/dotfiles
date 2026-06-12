@@ -8,19 +8,30 @@
 
 return {
 	"stevearc/overseer.nvim",
+
+	cmd = {
+		"OverseerOpen",
+		"OverseerToggle",
+		"OverseerRun",
+		"OverseerRunCmd",
+	},
+
 	opts = {
-		-- Setup DAP later when lazy-loading the plugin.
 		dap = false,
+
 		task_list = {
 			default_detail = 2,
 			direction = "bottom",
 			max_width = { 600, 0.7 },
+
 			bindings = {
 				["<C-b>"] = "ScrollOutputUp",
 				["<C-f>"] = "ScrollOutputDown",
+
 				["H"] = "IncreaseAllDetail",
 				["L"] = "DecreaseAllDetail",
-				-- Disable mappings I don't use.
+
+				-- Disable defaults you don't use
 				["g?"] = false,
 				["<C-l>"] = false,
 				["<C-h>"] = false,
@@ -28,56 +39,72 @@ return {
 				["}"] = false,
 			},
 		},
+
 		form = {
-			win_opts = { winblend = 0 },
+			win_opts = {
+				winblend = 0,
+			},
 		},
+
 		confirm = {
-			win_opts = { winblend = 5 },
+			win_opts = {
+				winblend = 5,
+			},
 		},
+
 		task_win = {
-			win_opts = { winblend = 5 },
+			win_opts = {
+				winblend = 5,
+			},
+		},
+
+		-- Optional lualine integration
+		components = {
+			"default",
 		},
 	},
+
 	keys = {
 		{
 			"<leader>ot",
-			"<cmd>OverseerToggle<cr>",
-			desc = "Toggle task window",
-		},
-		{
-			"<leader>o<",
 			function()
-				local overseer = require("overseer")
-
-				local tasks = overseer.list_tasks({ recent_first = true })
-				if vim.tbl_isempty(tasks) then
-					vim.notify("No tasks found", vim.log.levels.WARN)
-				else
-					overseer.run_action(tasks[1], "restart")
-					overseer.open({ enter = false })
-				end
+				require("overseer").toggle()
 			end,
-			desc = "Restart last task",
+			desc = "Toggle Overseer",
 		},
+
 		{
 			"<leader>or",
 			function()
 				local overseer = require("overseer")
 
-				overseer.run_template({}, function(task)
-					if task then
-						overseer.open({ enter = false })
-					end
-				end)
+				local task = overseer.run_task({})
+
+				if task then
+					overseer.open({ enter = false })
+				end
 			end,
-			desc = "Run task",
+			desc = "Run Task",
+		},
+
+		{
+			"<leader>o<",
+			function()
+				local overseer = require("overseer")
+
+				local tasks = overseer.list_tasks({
+					recent_first = true,
+				})
+
+				if vim.tbl_isempty(tasks) then
+					vim.notify("No tasks found", vim.log.levels.WARN)
+					return
+				end
+
+				overseer.run_action(tasks[1], "restart")
+				overseer.open({ enter = false })
+			end,
+			desc = "Restart Last Task",
 		},
 	},
-	config = function()
-		require("overseer").setup({
-			sections = {
-				lualine_x = { "overseer" },
-			},
-		})
-	end,
 }

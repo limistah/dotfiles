@@ -7,13 +7,13 @@
 -- See: https://github.com/Goose97/timber.nvim
 
 return {
-  'Goose97/timber.nvim',
-  event = 'BufReadPost',
-  opts = {
-    log_templates = {
-      default = {
-        lua = [[vim.print("%log_target", %log_target)]],
-      },
-    },
-  },
+	"Goose97/timber.nvim",
+	version = "*", -- Use for stability; omit to use `main` branch for the latest features
+	event = "VeryLazy",
+	config = function()
+		require("timber").setup({
+			-- Configuration here, or leave empty to use defaults
+		})
+	end,
 }
+

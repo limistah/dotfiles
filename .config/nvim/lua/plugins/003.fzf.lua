@@ -12,50 +12,6 @@ return {
 	"ibhagwan/fzf-lua",
 	enabled = false, -- Disabled in favor of Telescope
 	cmd = "FzfLua",
-	keys = {
-		{
-			"<leader>fb",
-			function()
-				local opts = {
-					winopts = {
-						height = 0.6,
-						width = 0.5,
-						preview = { vertical = "up:70%" },
-						-- Disable Treesitter highlighting for the matches.
-						treesitter = {
-							enabled = false,
-							fzf_colors = { ["fg"] = { "fg", "CursorLine" }, ["bg"] = { "bg", "Normal" } },
-						},
-					},
-					fzf_opts = {
-						["--layout"] = "reverse",
-					},
-				}
-
-				-- Use grep when in normal mode and blines in visual mode since the former doesn't support
-				-- searching inside visual selections.
-				-- See https://github.com/ibhagwan/fzf-lua/issues/2051
-				local mode = vim.api.nvim_get_mode().mode
-				if vim.startswith(mode, "n") then
-					require("fzf-lua").lgrep_curbuf(opts)
-				else
-					require("fzf-lua").blines(opts)
-				end
-			end,
-			desc = "Search current buffer",
-			mode = { "n", "x" },
-		},
-		{ "<leader>fB", "<cmd>FzfLua buffers<cr>", desc = "FZFLua Buffers" },
-		{ "<leader>fc", "<cmd>FzfLua highlights<cr>", desc = "FZFLua Highlights" },
-		{ "<leader>fd", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "FZFLua Document diagnostics" },
-		{ "<leader>ff", "<cmd>FzfLua files<cr>", desc = "FZFLua Find files" },
-		{ "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "FZFLua Grep" },
-		{ "<leader>fg", "<cmd>FzfLua grep_visual<cr>", desc = "FZFLua Grep", mode = "x" },
-		{ "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "FZFLua Help" },
-		{ "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "FZFLua Recently opened files" },
-		{ "<leader>f<", "<cmd>FzfLua resume<cr>", desc = "FZFLua Resume last fzf command" },
-		{ "z=", "<cmd>FzfLua spell_suggest<cr>", desc = "FZFLua Spelling suggestions" },
-	},
 	opts = function()
 		local actions = require("fzf-lua.actions")
 

@@ -6,7 +6,6 @@
 -- git files, grep search, and more. Essential for navigation and searching.
 -- See: https://github.com/nvim-telescope/telescope.nvim
 
-
 return {
 	-- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
@@ -74,28 +73,5 @@ return {
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
 		-- See `:help telescope.builtin`
-		vim.keymap.set("n", "<leader><leader>f", builtin.buffers, { desc = "[ ] Find existing buffers" })
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "find files" })
-		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "find diagnostics" })
-		vim.keymap.set("n", "<leader>fd", builtin.oldfiles, { desc = 'find Recent Files ("." for repeat)' })
-		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "open recent files" })
-		vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "find git files" })
-		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "find commands" })
-		vim.keymap.set("n", "<leader>fw", function()
-			local word = vim.fn.expand("<cword>")
-			builtin.grep_string({ search = word })
-		end, { desc = "find word" })
-
-		vim.keymap.set("n", "<leader>f/", function()
-			builtin.live_grep({
-				grep_open_files = true,
-				prompt_title = "Live Grep in Open Files",
-			})
-		end, { desc = "find in Open Files" })
-
-		vim.keymap.set("n", "<leader>sn", function()
-			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end, { desc = "find in Neovim Files" })
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "view help" })
 	end,
 }

@@ -1,10 +1,4 @@
 local map = vim.keymap.set
-local tb = require("telescope.builtin")
-
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
 
 -- ============================================================================
 -- Disable Arrow Keys
@@ -34,8 +28,7 @@ map("t", "<C-l>", [[<C-\><C-n><C-w>l]])
 -- ============================================================================
 
 map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor" })
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
@@ -93,28 +86,8 @@ map("n", "<C-e>", function()
 end, { desc = "Harpoon Menu" })
 
 -- ============================================================================
--- LSP Navigation
+-- Diagnostics
 -- ============================================================================
-
-map("n", "gd", tb.lsp_definitions, {
-	desc = "Definitions",
-})
-
-map("n", "gr", tb.lsp_references, {
-	desc = "References",
-})
-
-map("n", "gi", tb.lsp_implementations, {
-	desc = "Implementations",
-})
-
-map("n", "gt", tb.lsp_type_definitions, {
-	desc = "Type Definitions",
-})
-
-map("n", "K", vim.lsp.buf.hover, {
-	desc = "Hover Documentation",
-})
 
 map("n", "[d", vim.diagnostic.goto_prev, {
 	desc = "Previous Diagnostic",
