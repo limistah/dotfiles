@@ -2,7 +2,25 @@ local wk = require("which-key")
 local tb = require("telescope.builtin")
 
 wk.add({
+	{ "<leader>K", group = "Help" },
 
+	{
+		"<leader>Kk",
+		"<cmd>Telescope keymaps<CR>",
+		desc = "Keymaps",
+	},
+
+	{
+		"<leader>Kh",
+		"<cmd>Telescope help_tags<CR>",
+		desc = "Help Tags",
+	},
+
+	{
+		"<leader>Kc",
+		"<cmd>checkhealth<CR>",
+		desc = "Check Health",
+	},
 	-- =========================================================================
 	-- AI
 	-- =========================================================================

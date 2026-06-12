@@ -9,7 +9,7 @@
 return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
-	enabled = false,
+	enabled = true,
 	dependencies = { "nvim-lua/plenary.nvim" },
 	opts = {
 		save_on_toggle = true,
