@@ -13,3 +13,6 @@
 [submodule ".config/alacritty/themes"]
 	path = .config/alacritty/themes
 	url = https://github.com/alacritty/alacritty-theme
+[submodule ".config/yazi/flavors/gruvbox-dark.yazi"]
+	path = .config/yazi/flavors/gruvbox-dark.yazi
+	url = git@github.com:bennyyip/gruvbox-dark.yazi.git
