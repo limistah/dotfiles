@@ -1,5 +1,17 @@
 local map = vim.keymap.set
 
+-- =========================================================================
+-- Goto (g)
+-- =========================================================================
+
+local tb = require("telescope.builtin")
+
+map("n", "gd", tb.lsp_definitions)
+map("n", "gr", tb.lsp_references)
+map("n", "gi", tb.lsp_implementations)
+map("n", "gt", tb.lsp_type_definitions)
+map("n", "gD", vim.lsp.buf.declaration)
+
 -- ============================================================================
 -- Disable Arrow Keys
 -- ============================================================================

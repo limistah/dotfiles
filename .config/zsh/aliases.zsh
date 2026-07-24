@@ -4,7 +4,8 @@ alias python=python3
 alias work='$HOME/Library/Work'
 alias config='$HOME/Library/Work/configs'
 
-
+# alias to nvim
+alias nv='nvim'
 
 # Portfolio directory work related aliases
 alias blog='$HOME/Library/Work/portfolio/limsitah.dev'
