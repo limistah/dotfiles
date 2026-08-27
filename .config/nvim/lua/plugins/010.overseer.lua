@@ -17,8 +17,14 @@ return {
 	},
 
 	opts = {
-		dap = false,
-
+		dap = true,
+		-- Configure the task output buffer and window
+		output = {
+			-- Use a terminal buffer to display output. If false, a normal buffer is used
+			use_terminal = true,
+			-- If true, don't clear the buffer when a task restarts
+			preserve_output = false,
+		},
 		task_list = {
 			default_detail = 2,
 			direction = "bottom",

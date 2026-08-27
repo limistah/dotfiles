@@ -1,3 +1,7 @@
 thoughts
 
 **/.claude/settings.local.json
+
+**/.claude/.cc-writes/
+
+.config/github-copilot/auth.db*
