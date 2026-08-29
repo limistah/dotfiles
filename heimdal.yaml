@@ -20,6 +20,8 @@ profiles:
         - lazygit
         - gh
         - stow
+        - bash
+        - yazi
 
         # Programming languages
         - go
@@ -27,10 +29,13 @@ profiles:
         - zig
         - python@3.14
         - llvm
+        - luarocks
 
         # Build tools
         - cmake
         - pkgconf
+        - protobuf
+        - golangci-lint
 
         # CLI utilities
         - btop
@@ -42,6 +47,8 @@ profiles:
         - sesh
         - rainfrog
         - zsh-completions
+        - jq
+        - sevenzip
 
         # Database/Backend
         - supabase/tap/supabase
@@ -55,6 +62,16 @@ profiles:
 
         # Networking
         - tailscale
+
+        # Media/Graphics
+        - ffmpeg
+        - ffmpeg-full
+        - imagemagick-full
+        - poppler
+        - resvg
+
+        # Deployment
+        - 1broseidon/tap/ketch
 
         # AI agents
         - herdr
