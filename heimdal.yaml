@@ -44,7 +44,7 @@ profiles:
         - zsh-completions
 
         # Database/Backend
-        - supabase
+        - supabase/tap/supabase
 
         # Static site generation
         - hugo
@@ -52,6 +52,12 @@ profiles:
         # Security
         - gnupg
         - gpgme
+
+        # Networking
+        - tailscale
+
+        # AI agents
+        - herdr
 
       homebrew_casks:
         # Terminals
@@ -63,7 +69,9 @@ profiles:
 
         # Utilities
         - ngrok
-        - tailscale-app
+
+        # AI agents
+        - claude-code
 
         # Fonts
         - font-meslo-lg-nerd-font
@@ -89,12 +97,6 @@ packages:
   pacman:
   apk:
   mas: []
-
-hooks:
-  post_apply:
-    - command: "curl -fsSL https://opencode.ai/install | bash"
-      description: "Install Opencode"
-      fail_on_error: true
 
 ignore:
   - .git

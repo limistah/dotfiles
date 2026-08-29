@@ -1,4 +1,8 @@
 {
+  "env": {
+    "CLAUDE_CODE_NO_FLICKER": "1"
+  },
+  "model": "sonnet[1m]",
   "hooks": {
     "Notification": [
       {
@@ -11,11 +15,6 @@
       }
     ]
   },
-  "env": {
-    "CLAUDE_CODE_NO_FLICKER": "1"
-  },
-  "preferredNotifChannel": "terminal_bell",
-  "model": "sonnet[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -24,7 +23,6 @@
     "claude-code-wakatime@wakatime": true,
     "gopls-lsp@claude-plugins-official": true
   },
-  "theme": "auto",
   "extraKnownMarketplaces": {
     "wakatime": {
       "source": {
@@ -32,5 +30,8 @@
         "url": "https://github.com/wakatime/claude-code-wakatime.git"
       }
     }
-  }
+  },
+  "theme": "auto",
+  "preferredNotifChannel": "terminal_bell",
+  "feedbackDrafts": "off"
 }

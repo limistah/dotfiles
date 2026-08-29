@@ -9,6 +9,7 @@ model=$(echo "$input" | jq -r '.model.display_name')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 five=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
 week=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
 
 RESET=$'\033[0m'
 CYAN=$'\033[36m'
@@ -16,6 +17,7 @@ GREEN=$'\033[32m'
 BOLD_GREEN=$'\033[1;32m'
 RED=$'\033[31m'
 YELLOW=$'\033[33m'
+MAGENTA=$'\033[35m'
 GRAY=$'\033[90m'
 
 dir_display=$(basename "$cwd")
@@ -59,7 +61,23 @@ fi
 
 model_segment=" ${GRAY}[${model}]${RESET}"
 
+# PRs created this session, from Claude Code's structured gitOperation records
+# in the transcript (tool_result.toolUseResult.gitOperation.pr.action == "created").
+# Shown as repo#N, in creation order, deduped in case a create was retried.
+pr_segment=""
+if [ -n "$transcript_path" ] && [ -f "$transcript_path" ]; then
+  pr_list=$(jq -R -r '
+    fromjson? | select(.toolUseResult.gitOperation.pr.action == "created")
+    | .toolUseResult.gitOperation.pr.url as $u
+    | ($u | capture("github\\.com/(?<owner>[^/]+)/(?<repo>[^/]+)/pull/(?<num>[0-9]+)"))
+    | "\(.repo)#\(.num)"
+  ' "$transcript_path" 2>/dev/null | awk '!seen[$0]++' | paste -sd',' -)
+  if [ -n "$pr_list" ]; then
+    pr_segment=" ${MAGENTA}prs:${pr_list}${RESET}"
+  fi
+fi
+
 arrow="${BOLD_GREEN}➜${RESET}"
 dir_colored="${CYAN}${dir_display}${RESET}"
 
-printf "%s %s%s%s%s%s\n" "$arrow" "$dir_colored" "$git_segment" "$model_segment" "$context_segment" "$rate_segment"
+printf "%s %s%s%s%s%s%s\n" "$arrow" "$dir_colored" "$git_segment" "$model_segment" "$context_segment" "$rate_segment" "$pr_segment"
