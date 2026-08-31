@@ -83,15 +83,51 @@ profiles:
 
         # Browsers
         - google-chrome
+        - firefox
+
+        # Networking
+        - tailscale-app
 
         # Utilities
         - ngrok
+        - orbstack
+        - handy
 
         # AI agents
         - claude-code
+        - codex
+        - chatgpt
+        - claude
 
         # Fonts
         - font-meslo-lg-nerd-font
+        - font-symbols-only-nerd-font
+
+        # Media
+        - spotify
+
+        # Password management
+        - 1password
+
+        # Database/Backend
+        - dbeaver-community
+        - docker-desktop
+        - postico
+        - redis-insight
+        - tableplus
+        - beekeeper-studio
+
+        # Notes/Docs
+        - obsidian
+        - typora
+
+        # API tooling
+        - postman
+        - yaak
+
+        # Code editors
+        - visual-studio-code
+        - zed
 
       mas:
         - { "id": 1569813296, "name": "1Password for Safari" }
@@ -110,9 +146,52 @@ packages:
   homebrew: []
   homebrew_casks: []
   apt:
+    - firefox
+    - tailscale # requires Tailscale's official apt repo
+    - docker-ce # Docker Engine; Linux equivalent of docker-desktop
+    - docker-ce-cli
+    - containerd.io
+    - code # VS Code; requires Microsoft's official apt repo
+    - dbeaver-ce # requires DBeaver's official apt repo
+    - 1password # requires 1Password's official apt repo
+    - typora # requires Typora's official apt repo
+    - redis-insight # requires Redis's official apt repo
+    # No official apt package (AUR/flatpak/manual install only, or no Linux build at all):
+    # spotify, font-symbols-only-nerd-font, beekeeper-studio, postman, tableplus, yaak, zed
+    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
+    # orbstack is macOS-only; Linux runs containers natively via docker/podman
   dnf:
+    - firefox
+    - tailscale # requires Tailscale's official dnf repo
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - code # requires Microsoft's official dnf repo
+    - dbeaver-ce # requires DBeaver's official rpm repo
+    - 1password # requires 1Password's official dnf repo
+    # obsidian: no official dnf package, available as flatpak md.obsidian.Obsidian
+    # No official dnf package (AUR/flatpak/manual install only, or no Linux build at all):
+    # spotify, font-symbols-only-nerd-font, typora, redis-insight, beekeeper-studio, postman, tableplus, yaak, zed
+    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
+    # orbstack is macOS-only; Linux runs containers natively via docker/podman
   pacman:
+    - firefox
+    - tailscale
+    - docker
+    - code # community package, open-source build of VS Code
+    - obsidian # official extra repo
+    # AUR only (requires an AUR helper like yay/paru): 1password, dbeaver, spotify,
+    # ttf-nerd-fonts-symbols, beekeeper-studio-bin, postman-bin, tableplus, typora, yaak-bin, zed
+    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
+    # orbstack is macOS-only; Linux runs containers natively via docker/podman
   apk:
+    - firefox
+    - tailscale
+    - docker
+    # Alpine has no official packages for GUI desktop apps generally;
+    # the rest of the macOS cask list (1password, dbeaver, spotify, nerd fonts,
+    # beekeeper-studio, postman, tableplus, typora, yaak, zed, obsidian, redis-insight,
+    # chatgpt, claude, postico, handy, codex, orbstack) has no Alpine equivalent
   mas: []
 
 ignore:

@@ -31,7 +31,8 @@
       }
     }
   },
+  "feedbackDrafts": "off",
   "theme": "auto",
   "preferredNotifChannel": "terminal_bell",
-  "feedbackDrafts": "off"
+  "skipWorkflowUsageWarning": true
 }
