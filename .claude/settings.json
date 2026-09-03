@@ -24,6 +24,17 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/watch-pr-ci-on-create.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
