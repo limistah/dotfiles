@@ -98,6 +98,14 @@ map("n", "<C-e>", function()
 end, { desc = "Harpoon Menu" })
 
 -- ============================================================================
+-- Terminal (native :terminal, no plugin)
+-- ============================================================================
+
+map("n", "<leader>tt", "<cmd>botright split | resize 15 | terminal<CR>i", { desc = "Open terminal (horizontal)" })
+map("n", "<leader>tv", "<cmd>vsplit | terminal<CR>i", { desc = "Open terminal (vertical)" })
+map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
+-- ============================================================================
 -- Diagnostics
 -- ============================================================================
 

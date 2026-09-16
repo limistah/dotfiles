@@ -95,6 +95,12 @@ end
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Project-local config: a `.nvim.lua` (or `.exrc`) in a project root is
+-- auto-sourced on startup there. Keep it to options/keymaps/autocmds you
+-- trust per-project (e.g. project-specific shiftwidth, a local LSP tweak).
+vim.opt.exrc = true
+vim.opt.secure = true
+
 vim.opt.path:append({ "**" })
 vim.opt.spelllang = { "en" }
 vim.opt.wildignore:append({

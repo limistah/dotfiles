@@ -2,7 +2,7 @@
   "env": {
     "CLAUDE_CODE_NO_FLICKER": "1"
   },
-  "model": "sonnet[1m]",
+  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -54,7 +54,7 @@
     }
   },
   "feedbackDrafts": "off",
+  "skipWorkflowUsageWarning": true,
   "theme": "auto",
-  "preferredNotifChannel": "terminal_bell",
-  "skipWorkflowUsageWarning": true
+  "preferredNotifChannel": "terminal_bell"
 }

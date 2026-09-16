@@ -10,7 +10,6 @@ return {
 	"saghen/blink.cmp",
 	version = "1.*",
 	dependencies = {
-		"fang2hou/blink-copilot",
 		{
 			"L3MON4D3/LuaSnip",
 			lazy = true,
@@ -61,14 +60,8 @@ return {
 		},
 
 		sources = {
-			default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+			default = { "lsp", "path", "snippets", "buffer" },
 			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					-- Make lazydev completions top priority (see `:h blink.cmp`)
-					score_offset = 4,
-				},
 				lsp = {
 					min_keyword_length = 2,
 					max_items = 3,
@@ -85,13 +78,6 @@ return {
 					min_keyword_length = 4,
 					max_items = 5,
 					score_offset = 3,
-				},
-				copilot = {
-					name = "copilot",
-					module = "blink-copilot",
-					score_offset = 8,
-					max_items = 3,
-					async = true,
 				},
 			},
 			per_filetype = {
