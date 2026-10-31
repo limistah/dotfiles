@@ -9,6 +9,9 @@ hooks:
     - command: '[ -x "$HOME/.local/bin/uv" ] && [ -f "$HOME/.local/bin/env" ] || curl -LsSf https://astral.sh/uv/install.sh | sh'
       description: "Install uv (also creates ~/.local/bin/env, sourced by .zshrc)"
       fail_on_error: false
+    - command: 'if command -v nvim >/dev/null 2>&1; then nvim --headless "+Lazy! restore" +qa && nvim --headless "+Lazy! load mason-tool-installer.nvim" "+MasonToolsInstallSync" +qa; fi'
+      description: "Install Neovim plugins at lazy-lock.json versions, then Mason LSPs/formatters"
+      fail_on_error: false
 
 profiles:
   work:
