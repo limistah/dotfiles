@@ -2,6 +2,14 @@ heimdal:
   version: "1"
   repo: git@github.com/limistah/dotfiles.git
 
+# Global hooks (run for every profile; `heimdal sync` runs these too, since
+# sync finishes by running apply)
+hooks:
+  post_apply:
+    - command: '[ -x "$HOME/.local/bin/uv" ] && [ -f "$HOME/.local/bin/env" ] || curl -LsSf https://astral.sh/uv/install.sh | sh'
+      description: "Install uv (also creates ~/.local/bin/env, sourced by .zshrc)"
+      fail_on_error: false
+
 profiles:
   work:
     dotfiles: []
@@ -10,6 +18,7 @@ profiles:
         # Development tools
         - neovim
         - tmux
+        - tmuxifier
         - sesh
         - fd
         - tree-sitter-cli
