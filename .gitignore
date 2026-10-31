@@ -8,3 +8,12 @@ heimdal.state.lock
 .config/rainfrog_config.toml
 .heimdal
 .config/yarn/global/node_modules
+
+# macOS metadata
+.DS_Store
+
+# Credentials: never commit
+.config/github-copilot/auth.db*
+
+# Files saved here by the Claude desktop app, not part of the dotfiles
+.config/nvim/Claude outputs/

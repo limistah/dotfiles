@@ -26,5 +26,8 @@
   "superpowers@git+https://github.com/obra/superpowers.git",
   "opencode-wakatime",
   "opencode-websearch-cited"
- ]
+ ],
+  "mcp": {
+    "codebase-memory-mcp": {"command":["/Users/aleemisiaka/.local/bin/codebase-memory-mcp"],"type":"local"}
+  }
 }

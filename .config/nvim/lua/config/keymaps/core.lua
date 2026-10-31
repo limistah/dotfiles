@@ -4,12 +4,14 @@ local map = vim.keymap.set
 -- Goto (g)
 -- =========================================================================
 
-local tb = require("telescope.builtin")
+local fzf = require("fzf-lua")
 
-map("n", "gd", tb.lsp_definitions)
-map("n", "gr", tb.lsp_references)
-map("n", "gi", tb.lsp_implementations)
-map("n", "gt", tb.lsp_type_definitions)
+map("n", "gd", fzf.lsp_definitions)
+-- `grr` (not `gr`): Neovim 0.11+ ships built-in gra/grn/gri/grt/grx keys,
+-- and a plain `gr` mapping would make every one of them wait on timeoutlen.
+map("n", "grr", fzf.lsp_references, { desc = "References (fzf-lua)" })
+map("n", "gi", fzf.lsp_implementations)
+map("n", "gt", fzf.lsp_typedefs)
 map("n", "gD", vim.lsp.buf.declaration)
 
 -- ============================================================================
@@ -103,7 +105,9 @@ end, { desc = "Harpoon Menu" })
 
 map("n", "<leader>tt", "<cmd>botright split | resize 15 | terminal<CR>i", { desc = "Open terminal (horizontal)" })
 map("n", "<leader>tv", "<cmd>vsplit | terminal<CR>i", { desc = "Open terminal (vertical)" })
-map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+-- <C-]> instead of <Esc><Esc>, so a single Esc reaches terminal programs
+-- immediately. Native <C-\><C-n> also still works.
+map("t", "<C-]>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- ============================================================================
 -- Diagnostics
