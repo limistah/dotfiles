@@ -1,217 +1,200 @@
 heimdal:
-  version: "1"
+  version: '1'
   repo: git@github.com/limistah/dotfiles.git
-
-# Global hooks (run for every profile; `heimdal sync` runs these too, since
-# sync finishes by running apply)
-hooks:
-  post_apply:
-    - command: '[ -x "$HOME/.local/bin/uv" ] && [ -f "$HOME/.local/bin/env" ] || curl -LsSf https://astral.sh/uv/install.sh | sh'
-      description: "Install uv (also creates ~/.local/bin/env, sourced by .zshrc)"
-      fail_on_error: false
-    - command: 'if command -v nvim >/dev/null 2>&1; then nvim --headless "+Lazy! restore" +qa && nvim --headless "+Lazy! load mason-tool-installer.nvim" "+MasonToolsInstallSync" +qa; fi'
-      description: "Install Neovim plugins at lazy-lock.json versions, then Mason LSPs/formatters"
-      fail_on_error: false
-
 profiles:
   work:
+    extends: null
     dotfiles: []
     packages:
+      common: []
       homebrew:
-        # Development tools
-        - neovim
-        - tmux
-        - tmuxifier
-        - sesh
-        - fd
-        - tree-sitter-cli
-        - fzf
-        - ripgrep
-        - tree
-        - zoxide
-        - lazygit
-        - gh
-        - stow
-        - bash
-        - yazi
-
-        # Programming languages
-        - go
-        - rust
-        - zig
-        - python@3.14
-        - llvm
-        - luarocks
-
-        # Build tools
-        - cmake
-        - pkgconf
-        - protobuf
-        - golangci-lint
-
-        # CLI utilities
-        - btop
-        - wget
-        - yamlfmt
-        - grpcurl
-        - mas
-        - ast-grep
-        - sesh
-        - rainfrog
-        - zsh-completions
-        - jq
-        - sevenzip
-
-        # Database/Backend
-        - supabase/tap/supabase
-
-        # Static site generation
-        - hugo
-
-        # Security
-        - gnupg
-        - gpgme
-
-        # Networking
-        - tailscale
-
-        # Media/Graphics
-        - ffmpeg
-        - ffmpeg-full
-        - imagemagick-full
-        - poppler
-        - resvg
-
-        # Deployment
-        - 1broseidon/tap/ketch
-
-        # AI agents
-        - herdr
-
+      - neovim
+      - tmux
+      - sesh
+      - fd
+      - tree-sitter-cli
+      - fzf
+      - ripgrep
+      - tree
+      - zoxide
+      - lazygit
+      - gh
+      - stow
+      - bash
+      - yazi
+      - go
+      - rust
+      - zig
+      - python@3.14
+      - llvm
+      - luarocks
+      - cmake
+      - pkgconf
+      - protobuf
+      - golangci-lint
+      - btop
+      - wget
+      - yamlfmt
+      - grpcurl
+      - mas
+      - ast-grep
+      - sesh
+      - rainfrog
+      - zsh-completions
+      - jq
+      - sevenzip
+      - supabase/tap/supabase
+      - hugo
+      - gnupg
+      - gpgme
+      - tailscale
+      - ffmpeg
+      - ffmpeg-full
+      - imagemagick-full
+      - poppler
+      - resvg
+      - 1broseidon/tap/ketch
+      - herdr
+      - node
       homebrew_casks:
-        # Terminals
-        - alacritty
-        - ghostty
-
-        # Browsers
-        - google-chrome
-        - firefox
-
-        # Networking
-        - tailscale-app
-
-        # Utilities
-        - ngrok
-        - orbstack
-        - handy
-
-        # AI agents
-        - claude-code
-        - codex
-        - chatgpt
-        - claude
-
-        # Fonts
-        - font-meslo-lg-nerd-font
-        - font-symbols-only-nerd-font
-
-        # Media
-        - spotify
-
-        # Password management
-        - 1password
-
-        # Database/Backend
-        - dbeaver-community
-        - docker-desktop
-        - postico
-        - redis-insight
-        - tableplus
-        - beekeeper-studio
-
-        # Notes/Docs
-        - obsidian
-        - typora
-
-        # API tooling
-        - postman
-        - yaak
-
-        # Code editors
-        - visual-studio-code
-        - zed
-
+      - ghostty
+      - google-chrome
+      - firefox
+      - tailscale-app
+      - ngrok
+      - orbstack
+      - handy
+      - claude-code
+      - codex
+      - claude
+      - font-meslo-lg-nerd-font
+      - font-symbols-only-nerd-font
+      - spotify
+      - 1password
+      - dbeaver-community
+      - docker-desktop
+      - postico
+      - redis-insight
+      - tableplus
+      - beekeeper-studio
+      - typora
+      - postman
+      - yaak
+      - visual-studio-code
+      - zed
+      apt: []
+      dnf: []
+      pacman: []
+      apk: []
       mas:
-        - { "id": 1569813296, "name": "1Password for Safari" }
-        - { "id": 682658836, "name": "GarageBand" }
-        - { "id": 1444383602, "name": "Goodnotes" }
-        - { "id": 1401495844, "name": "Netler" }
-        - { "id": 1507139439, "name": "One Markdown" }
-        - { "id": 1596283165, "name": "rcmd" }
-        - { "id": 803453959, "name": "Slack" }
-        - { "id": 966085870, "name": "TickTick" }
-        - { "id": 310633997, "name": "WhatsApp" }
-
+      - id: 1569813296
+        name: 1Password for Safari
+      - id: 1401495844
+        name: Netler
+      - id: 1507139439
+        name: One Markdown
+      - id: 1596283165
+        name: rcmd
+      - id: 803453959
+        name: Slack
+    toolchains:
+      npm: []
+      cargo: []
+      go: []
+      gem: []
+      pip: []
+    hooks:
+      pre_apply: []
+      post_apply: []
+      pre_sync: []
+      post_sync: []
+    templates: []
+    ignore: []
+  personal:
+    extends: work
+    dotfiles: []
+    packages:
+      homebrew_casks:
+      - chatgpt
+      - obsidian
+      - notion
+      mas:
+      - id: 682658836
+        name: GarageBand
+      - id: 1444383602
+        name: Goodnotes
+      - id: 966085870
+        name: TickTick
+      - id: 310633997
+        name: WhatsApp
 packages:
   common:
-    - zsh
+  - zsh
   homebrew: []
   homebrew_casks: []
   apt:
-    - firefox
-    - tailscale # requires Tailscale's official apt repo
-    - docker-ce # Docker Engine; Linux equivalent of docker-desktop
-    - docker-ce-cli
-    - containerd.io
-    - code # VS Code; requires Microsoft's official apt repo
-    - dbeaver-ce # requires DBeaver's official apt repo
-    - 1password # requires 1Password's official apt repo
-    - typora # requires Typora's official apt repo
-    - redis-insight # requires Redis's official apt repo
-    # No official apt package (AUR/flatpak/manual install only, or no Linux build at all):
-    # spotify, font-symbols-only-nerd-font, beekeeper-studio, postman, tableplus, yaak, zed
-    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
-    # orbstack is macOS-only; Linux runs containers natively via docker/podman
+  - firefox
+  - tailscale
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - code
+  - dbeaver-ce
+  - 1password
+  - typora
+  - redis-insight
   dnf:
-    - firefox
-    - tailscale # requires Tailscale's official dnf repo
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - code # requires Microsoft's official dnf repo
-    - dbeaver-ce # requires DBeaver's official rpm repo
-    - 1password # requires 1Password's official dnf repo
-    # obsidian: no official dnf package, available as flatpak md.obsidian.Obsidian
-    # No official dnf package (AUR/flatpak/manual install only, or no Linux build at all):
-    # spotify, font-symbols-only-nerd-font, typora, redis-insight, beekeeper-studio, postman, tableplus, yaak, zed
-    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
-    # orbstack is macOS-only; Linux runs containers natively via docker/podman
+  - firefox
+  - tailscale
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - code
+  - dbeaver-ce
+  - 1password
   pacman:
-    - firefox
-    - tailscale
-    - docker
-    - code # community package, open-source build of VS Code
-    - obsidian # official extra repo
-    # AUR only (requires an AUR helper like yay/paru): 1password, dbeaver, spotify,
-    # ttf-nerd-fonts-symbols, beekeeper-studio-bin, postman-bin, tableplus, typora, yaak-bin, zed
-    # No Linux build at all: chatgpt, claude (desktop), postico, handy, codex
-    # orbstack is macOS-only; Linux runs containers natively via docker/podman
+  - firefox
+  - tailscale
+  - docker
+  - code
+  - obsidian
   apk:
-    - firefox
-    - tailscale
-    - docker
-    # Alpine has no official packages for GUI desktop apps generally;
-    # the rest of the macOS cask list (1password, dbeaver, spotify, nerd fonts,
-    # beekeeper-studio, postman, tableplus, typora, yaak, zed, obsidian, redis-insight,
-    # chatgpt, claude, postico, handy, codex, orbstack) has no Alpine equivalent
+  - firefox
+  - tailscale
+  - docker
   mas: []
-
+toolchains:
+  npm: []
+  cargo: []
+  go: []
+  gem: []
+  pip: []
 ignore:
-  - .git
-  - .gitignore
-  - heimdal.yaml
-  - .stowrc
-  - "*.md"
-  - LICENSE
-  - .DS_Store
-  - .config/yarn/global/node_modules
+- .git
+- .gitignore
+- heimdal.yaml
+- .stowrc
+- '*.md'
+- LICENSE
+- .DS_Store
+- .config/yarn/global/node_modules
+history: null
+hooks:
+  pre_apply:
+  - command: 'brew list --cask google-chrome >/dev/null 2>&1 || brew install --cask --adopt google-chrome'
+    description: Adopt a manually installed Chrome into Homebrew
+    os: [macos]
+    fail_on_error: false
+  post_apply:
+  - command: '[ -x "$HOME/.local/bin/uv" ] && [ -f "$HOME/.local/bin/env" ] || curl -LsSf https://astral.sh/uv/install.sh | sh'
+    description: Install uv (also creates ~/.local/bin/env, sourced by .zshrc)
+    os: []
+    fail_on_error: false
+  - command: if command -v nvim >/dev/null 2>&1; then nvim --headless "+Lazy! restore" +qa && nvim --headless "+Lazy! load mason-tool-installer.nvim" "+MasonToolsInstallSync" +qa; fi
+    description: Install Neovim plugins at lazy-lock.json versions, then Mason LSPs/formatters
+    os: []
+    fail_on_error: false
+  pre_sync: []
+  post_sync: []
+defaults: null
+parallel_jobs: 4

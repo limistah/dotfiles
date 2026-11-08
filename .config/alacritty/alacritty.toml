@@ -1,7 +1,0 @@
-[font]
-normal = { family = "MesloLGS Nerd Font Mono", style = "Regular" }
-size = 11
-
-
-[general]
-import = [ "~/.config/alacritty/themes/themes/gruvbox_material_medium_dark.toml" ]
